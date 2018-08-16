@@ -4,12 +4,16 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: DataTypes.NOW  // this line can give some problems
-            // sequelize.fn('NOW') possible solution if line up gives problems
+            // sequelize.fn("NOW") possible solution if line up gives problems
         },
         user_comment: {
             type: DataTypes.STRING,
             allowNull: false,
             len: [1, 300]
+        },
+        isGoing: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
         }
     });
 
