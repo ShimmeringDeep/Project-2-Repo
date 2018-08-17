@@ -1,22 +1,27 @@
-var db = require("../models");
+var db = require("../models"); //grabs schema and seeds
 
 module.exports = function(app) {
+
+  //pull on event page and user dashboard
   // Get all examples
-  app.get("/api/examples", function(req, res) {
+  app.get("/api/events", function(req, res) {
+    //displays all events
     db.Example.findAll({}).then(function(dbExamples) {
       res.json(dbExamples);
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
+  // Create a new example 
+  app.post("/api/events/:id", function(req, res) {
+    //post a new event
     db.Example.create(req.body).then(function(dbExample) {
       res.json(dbExample);
     });
   });
 
   // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
+  app.delete("/api/events/:id", function(req, res) {
+    //delete an event (administrator only ability)
     db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
       res.json(dbExample);
     });
