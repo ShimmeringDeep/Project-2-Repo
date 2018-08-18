@@ -48,7 +48,6 @@ module.exports = function (app) {
                 });
             });
     });
-<<<<<<< HEAD
 
     app.put("admin/", function (req, res) {
         db.Event.update(req.body, {
@@ -70,6 +69,3 @@ module.exports = function (app) {
         })
     });
 };
-=======
-};
->>>>>>> b05868d1c939e4f15e029f2df98e767c025da568

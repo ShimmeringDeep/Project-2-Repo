@@ -10,6 +10,7 @@ module.exports = function (app) {
       }
     }).then(function (user) {
       console.log("THIS IS WHAT YOU WANT TO KNOW  " + user)
+      res.json(user);
     });
   });
 
