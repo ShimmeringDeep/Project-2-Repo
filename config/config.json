@@ -2,7 +2,11 @@
   "development": {
     "username": "root",
     "password": "root",
+<<<<<<< HEAD
     "database": "exampledb",
+=======
+    "database": "intheband",
+>>>>>>> 7fe757f07ebae8a9332540f5feea399ced04297f
     "host": "localhost",
     "dialect": "mysql"
   },
