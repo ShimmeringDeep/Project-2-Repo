@@ -1,0 +1,64 @@
+<body style="background-color:#656262;">
+  <nav class="navbar navbar-light navbar-expand-md fixed-top bg-white">
+    <div class="container">
+      <a class="navbar-brand" href="#">inTheBand&nbsp;
+        <i class="fa fa-circle-o-notch" style="font-size:18px;"></i>
+      </a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navcol-1" style="font-size:13px;font-family:Montserrat, sans-serif;color:rgb(255,255,255);">
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" href="#" id="create-event" style="background-color:rgba(255,255,255,0.54);">Create an Event</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" href="#" id="login-link" style="background-color:rgba(255,255,255,0.47);">Log in</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" href="#" id="signup-link" style="color:#5f5f5f;background-color:rgba(255,255,255,0.57);">Sign up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section>
+    <div class="your-events">
+      <h1 style="padding:50px;">Event Name{{title}}</h1>
+      <div class="row">
+        <div class="col">
+          <p>Date{{date}}</p>
+        </div>
+        <div class="col">
+          <p>Venue{{venue}}</p>
+        </div>
+        <div class="col">
+          <p>Address{{address}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p>Going</p>
+        </div>
+        <div class="col">
+          <p>Map</p>
+        </div>
+        <div class="col">
+          <p>Attending</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="upcoming-events">
+      <h1>Comments</h1>
+      <div id="comments-div"></div>
+    </div>
+    <footer id="add-comment"></footer>
+  </section>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
