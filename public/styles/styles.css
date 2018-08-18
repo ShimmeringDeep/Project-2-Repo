@@ -29,7 +29,7 @@ body {
 #itb-hero {
   width:100%;
   height:100vh;
-  background-image:url("../../assets/img/smallgroup4.jpg");
+  background-image:url("../images/smallgroup4.jpg");
   background-position:center;
   background-size:cover;
   background-repeat:no-repeat;
@@ -70,7 +70,7 @@ body {
 
 @media (min-width: 768px) {
   #itb-hero {
-    background-image:url("../../assets/img/group4.jpg");
+    background-image:url("../images/group4.jpg");
   }
 }
 
