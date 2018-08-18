@@ -38,8 +38,8 @@ module.exports = function(passport, user) {
             {
                 email: email,
                 password: userPassword,
-                firstname: req.body.firstname,
-                lastname: req.body.lastname
+                userName: req.body.userName,
+                handle: req.body.handle
             };
  
                     User.create(data).then(function(newUser, created) {

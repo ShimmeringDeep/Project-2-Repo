@@ -8,9 +8,7 @@ var exphbs = require("express-handlebars");
 var db = require("./models");
 var app = express();
 var PORT = process.env.PORT || 3000;
-
 var env = require("dotenv").load();
-
 
 //For BodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,9 +18,6 @@ app.use(bodyParser.json());
 app.use(session({ secret: "keyboard cat",resave: true, saveUninitialized:true})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-
-//load passport strategies
-// require('./config/passport/passport.js')(passport, models.user);
 
 // Middleware
 app.use(bodyParser.urlencoded({
@@ -71,7 +66,8 @@ db.sequelize.sync(syncOptions).then(function () {
     });
 });
 
-
+//load passport strategies
+require('./config/passport/passport.js')(passport, models.user);
 
 
 module.exports = app;
