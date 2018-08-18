@@ -1,38 +1,31 @@
-const request = require('ajax-request');
-let db = require("../models");
-
+var request = require("ajax-request");
+var db = require("../models");
 module.exports = function (app) {
-
     app.post("/admin", function (req, res) {
-        const eventkey = "WVV7pQ6XZXdVrR9r" //eventful API key
-        let eventUrl = "http://api.eventful.com/json/events/search" //query url for eventful
+        // var eventkey = "WVV7pQ6XZXdVrR9r"; //eventful API key
+        var eventUrl = "http://api.eventful.com/json/events/search?app_key=WVV7pQ6XZXdVrR9r&location=houston, tx&date=thisweek&category=music , comedy, festivals_parades, food, art, holiday, singles_social, outdoors_recreation, sports&sort_order=popularity&mature=normal&page_size=25"; //query url for eventful
 
-        eventUrl += '?' + $.param({ //parameters for eventful query (we need a few more of these to make the returns cleaner)
-            'app_key': eventkey,
-            'location': locationInput,
-            'date': 'thisweek',
-            'category': 'music , comedy, festivals_parades, food, art, holiday, singles_social, outdoors_recreation, sports',
-            'sort_order': 'popularity',
-            'mature': 'normal',
-            'page_size': 25,
-        })
-
-        // });
         request({
-            url: eventUrl,
-            method: 'GET',
-            dataType: 'jsonp'
-        }).then(function (err, res, body) { //after ajax query to eventful
-            var events = body.events.event; //grabs the location in the result where the events from our query are stored
-            console.log(events);
+                url: eventUrl,
+                method: "GET",
+                dataType: "jsonp"
+            },
+            function (err, result, body) {
+                //after ajax query to eventful
+                if (err) throw err;
+                body = JSON.parse(body);
+                var events = body.events.event; //grabs the location in the result where the events from our query are stored
+                console.log(events);
 
-
-                var checkArr = [];
                 db.Event.findAll({}).then(function (result) {
-                    result.forEach((val) => {
-                        checkArr.push(val.eventfulID)
-
-                        for (var i = 0; i < events.length; i++) { //for loop populates the DOM and firebase with our returned events
+                    // var checkArr = [];
+                    var bulkArr = [];
+                    console.log(events.length)
+                    // events.forEach(function (val) {
+                        // checkArr.push(val.eventfulID);
+                        
+                        for (var i = 0; i < events.length; i++) {
+                            //for loop populates the DOM and firebase with our returned events
                             var event = events[i]; //grabs the event in the event array at location [i]
                             var eventObj = {
                                 title: event.title,
@@ -40,22 +33,19 @@ module.exports = function (app) {
                                 date: event.start_time,
                                 address: event.venue_address,
                                 description: event.description,
-                                eventfulID: event.id,
+                                eventfulID: event.id
                             };
-
-                            if (!checkArr.includes(eventObj.eventfulID)) {
-                                db.Event.create(eventObj).then(function (res){
-
-
-                                })
-                            }
+                            // if (!checkArr.includes(eventObj.eventfulID)) {
+                                console.log(eventObj);
+                                bulkArr.push(eventObj);
+                            // }
                         }
-                    });
+                    // });
+                    console.log(bulkArr)
+                    db.Event.bulkCreate(bulkArr).then(function () {
+                        res.end();
+                    })
                 });
             });
-        })
-
-
-
-
-}
+    });
+};
