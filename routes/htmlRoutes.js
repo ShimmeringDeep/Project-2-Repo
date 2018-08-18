@@ -1,21 +1,24 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Load index page
+  // Load when on user dashboard <<plz help>>
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
+
+    //when on "/" database using the event table will find all events then render on user dashboard
+    db.event.findAll({}).then(function(Events) {
+      res.render("dashboard", {  //check with Enrique on the name of handlebars template for dashboard
+        
+        events: Events
+
       });
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
+  // Load single event page and pass in an event by id
+  app.get("/events/:id", function(req, res) {
+    db.event.findOne({ where: { id: req.params.id } }).then(function(event) {
+      res.render("event", {  //again check with Enrique 
+        event: event
       });
     });
   });

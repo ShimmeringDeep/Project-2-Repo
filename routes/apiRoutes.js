@@ -6,8 +6,8 @@ module.exports = function(app) {
   // Get all examples
   app.get("/api/events", function(req, res) {
     //displays all events
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+    db.event.findAll({}).then(function(Events) {
+      res.json(Events); 
     });
   });
 
