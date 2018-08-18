@@ -1,64 +1,41 @@
-
-    <section class="d-flex flex-column justify-content-between" id="itb-hero" style="background-position:center;">
-        <div id="hero-top">
-            <nav class="navbar navbar-light navbar-expand-md">
-                <div class="container-fluid"><a class="navbar-brand" href="#">inTheBand&nbsp;<i class="fa fa-circle-o-notch" style="font-size:18px;"></i></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                    <div
-                        class="collapse navbar-collapse" id="navcol-1" style="font-size:13px;font-family:Montserrat, sans-serif;color:rgb(255,255,255);">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="#" id="create-event" style="background-color:rgba(255,255,255,0.54);">Create an Event</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="#" id="login-link" style="background-color:rgba(255,255,255,0.47);">Log in</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="#" id="signup-link" style="color:#5f5f5f;background-color:rgba(255,255,255,0.57);">Sign up</a></li>
-                        </ul>
-                </div>
+<section class="d-flex flex-column justify-content-between" id="itb-hero" style="background-position:center;">
+  <div id="hero-top">
+    <nav class="navbar navbar-light navbar-expand-md">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">inTheBand&nbsp;
+          <i class="fa fa-circle-o-notch" style="font-size:18px;"></i>
+        </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1" style="font-size:13px;font-family:Montserrat, sans-serif;color:rgb(255,255,255);">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" href="#" id="create-event" style="background-color:rgba(255,255,255,0.54);">Create an Event</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" href="#" id="login-link" style="background-color:rgba(255,255,255,0.47);">Log in</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" href="#" id="signup-link" style="color:#5f5f5f;background-color:rgba(255,255,255,0.57);">Sign up</a>
+            </li>
+          </ul>
         </div>
-        </nav>
+      </div>
+    </nav>
+  </div>
+  <div id="hero-mid">
+    <h1 class="text-center" id="Title" style="background-color:rgba(255,255,255,0.41);">What do you like to do?</h1>
+    <h2 class="text-center" id="sub-title" style="background-color:rgba(255,255,255,0.31);">Meet people with inTheBand</h2>
+  </div>
+  <div id="hero-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col" id="signup-col">
+          <button class="btn btn-primary" type="button" style="background-color:#b70379;color:rgb(255,255,255);">Log in/Sign Up</button>
         </div>
-        <div id="hero-mid">
-            <h1 class="text-center" id="Title" style="background-color:rgba(255,255,255,0.41);">What do you like to do?</h1>
-            <h2 class="text-center" id="sub-title" style="background-color:rgba(255,255,255,0.31);">Meet people with inTheBand</h2>
-        </div>
-        <div id="hero-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col" id="signup-col"><button class="btn btn-primary" type="button" style="background-color:#b70379;color:rgb(255,255,255);">Log in/Sign Up</button></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-
-{{!-- <div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
       </div>
     </div>
   </div>
-</div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script> --}}
+</section>
