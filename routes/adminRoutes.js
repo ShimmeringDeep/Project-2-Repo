@@ -22,24 +22,24 @@ module.exports = function (app) {
                     var bulkArr = [];
                     console.log(events.length)
                     // events.forEach(function (val) {
-                        // checkArr.push(val.eventfulID);
-                        
-                        for (var i = 0; i < events.length; i++) {
-                            //for loop populates the DOM and firebase with our returned events
-                            var event = events[i]; //grabs the event in the event array at location [i]
-                            var eventObj = {
-                                title: event.title,
-                                venue: event.venue_name,
-                                date: event.start_time,
-                                address: event.venue_address,
-                                description: event.description,
-                                eventfulID: event.id
-                            };
-                            // if (!checkArr.includes(eventObj.eventfulID)) {
-                                console.log(eventObj);
-                                bulkArr.push(eventObj);
-                            // }
-                        }
+                    // checkArr.push(val.eventfulID);
+
+                    for (var i = 0; i < events.length; i++) {
+                        //for loop populates the DOM and firebase with our returned events
+                        var event = events[i]; //grabs the event in the event array at location [i]
+                        var eventObj = {
+                            title: event.title,
+                            venue: event.venue_name,
+                            date: event.start_time,
+                            address: event.venue_address,
+                            description: event.description,
+                            eventfulID: event.id
+                        };
+                        // if (!checkArr.includes(eventObj.eventfulID)) {
+                        console.log(eventObj);
+                        bulkArr.push(eventObj);
+                        // }
+                    }
                     // });
                     console.log(bulkArr)
                     db.Event.bulkCreate(bulkArr).then(function () {
@@ -47,5 +47,25 @@ module.exports = function (app) {
                     })
                 });
             });
+    });
+
+    app.put("admin/", function (req, res) {
+        db.Event.update(req.body, {
+            where: {
+                id: req.body.id
+            }
+        }).then(function (dbEvent) {
+            res.json(dbEvent);
+        })
+    });
+
+    app.delete("admin/:id", function (req, res) {
+        db.Event.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function (eventDelete) {
+            res.json(eventDelete);
+        })
     });
 };
