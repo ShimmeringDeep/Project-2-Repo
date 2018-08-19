@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html style="background-color:#c9bdbd;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InTheBand</title>
+</head>
+
+<body style="background-color:#656262;">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="#">inTheBand&nbsp;
+                <i class="fa fa-circle-o-notch" style="font-size:18px;"></i>
+            </a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="font-size:13px;font-family:Montserrat, sans-serif;color:rgb(255,255,255);">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" href="#" id="create-event" style="background-color:rgba(255,255,255,0.54);">Create an Event</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="#" id="login-link" style="background-color:rgba(255,255,255,0.47);">Log in</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="#" id="signup-link" style="color:#5f5f5f;background-color:rgba(255,255,255,0.57);">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <h1>Heading</h1>
+    </section>
+
+    <div class="container">
+
+        <div class="your-events">
+            {{#each events}} {{events.title}} {{/each}}
+        </div>
+        <div class="upcoming-events">
+            {{#each events}}
+           <div  class= "clickEvent" data-eventId = `{{eventfulID}}`>
+                <div class="row">{{title}}</div>
+                <div class="row">
+                    <div class="col">{{date}}</div>
+                    <div class="col">{{venue}}</div>
+                    <div class="col">{{address}}</div>
+                </div>
+                <div class="row">description goes here{{description}}</div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <hr>     
+                <hr>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+</body>
+
+</html>
