@@ -116,3 +116,7 @@ function ronnie_tm_animate_text(){
 			backDelay: 2e3
 		});
 }
+
+
+// This is for Modal
+
