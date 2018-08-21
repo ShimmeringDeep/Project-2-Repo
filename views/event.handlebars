@@ -2,9 +2,9 @@
 <html style="background-color:#c9bdbd;">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InTheBand</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InTheBand</title>
 </head>
 
 <body style="background-color:#656262;">
@@ -60,11 +60,17 @@
     </div>
   </section>
   <section>
-    <div class="upcoming-events">
-      <h1>Comments</h1>
-      <div id="comments-div"></div>
+   <h1>Comments</h1> 
+    <div id="comments-div">
+      {{#each comment}}
+         <h2> {{comment.user_comment}} </h2>
+      {{/each}}
     </div>
-    <footer id="add-comment"></footer>
+
+    <footer id="add-comment">
+
+      
+    </footer>
   </section>
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>

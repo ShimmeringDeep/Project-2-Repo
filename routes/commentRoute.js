@@ -1,6 +1,7 @@
 var db = require("../models");
 
 module.exports = function (app) {
+
     // Load index page
 
     app.post("/api/comment/create", function (req, res) {
@@ -37,12 +38,18 @@ module.exports = function (app) {
             ]
 
         }).then(function(results) {
-            console.log(results, res)
+            // console.log(results, res)
+            console.log('cantidad de personas que van a la evento' +results.lenght);
             res.json(results);
+            
+
+            var attending = results.lenght;
         });
       });
     
 };
+
+
 
 
 // SELECT users.handle, comments.user_comment
