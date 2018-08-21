@@ -115,7 +115,7 @@ module.exports = function (app) {
   
     db.Event.findOne({ where: { id: req.params.id } }).then(function (Event) {
       res.render("event", {  //again check with Enrique 
-        event: Event
+        event: Event.dataValues
       });
     });
   });
