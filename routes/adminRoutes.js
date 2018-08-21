@@ -49,7 +49,7 @@ module.exports = function (app) {
             });
     });
 
-    app.put("admin/", function (req, res) {
+    app.put("/admin/", function (req, res) {
         db.Event.update(req.body, {
             where: {
                 id: req.body.id
@@ -59,7 +59,7 @@ module.exports = function (app) {
         })
     });
 
-    app.delete("admin/:id", function (req, res) {
+    app.delete("/admin/:id", function (req, res) {
         db.Event.destroy({
             where: {
                 id: req.params.id
