@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html style="background-color:#c9bdbd;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InTheBand</title>
+</head>
+
 <body style="background-color:#656262;">
   <nav class="navbar navbar-light navbar-expand-md fixed-top bg-white">
     <div class="container">
@@ -25,16 +34,16 @@
   </nav>
   <section>
     <div class="your-events">
-      <h1 style="padding:50px;">Event Name{{title}}</h1>
+      <h1 style="padding:50px;">Event Name{{event.title}}</h1>
       <div class="row">
         <div class="col">
-          <p>Date{{date}}</p>
+          <p>Date{{event.date}}</p>
         </div>
         <div class="col">
-          <p>Venue{{venue}}</p>
+          <p>Venue{{event.venue}}</p>
         </div>
         <div class="col">
-          <p>Address{{address}}</p>
+          <p>Address{{event.address}}</p>
         </div>
       </div>
       <div class="row">
@@ -60,5 +69,6 @@
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
+
 
 </html>
