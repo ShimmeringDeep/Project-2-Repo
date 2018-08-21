@@ -2,17 +2,17 @@ var db = require("../models");
 
 module.exports = function (app) {
     // Load index page
-    app.post("api/newComment", function (req, res) {
+    app.post("/api/comment/create", function (req, res) {
         db.Comment.create(req.body).then(function (comment) {
             res.json(comment);
         });
     });
-
     app.get("/api/comments", function(req, res) {
 
+        
         var eventID = req.body.eventfulID;
         var userId = req.body.userId;
-
+      
         db.Comment.findAll({
             where: {
                isGoing: true
@@ -21,20 +21,22 @@ module.exports = function (app) {
                 {
                     model: db.User,
                     where: {
-                        id: userId
+                        id: 1
                     }
                 },
                 {
                     model: db.Event,
                     where: {
-                        id: eventID
+                        id: 1
                     }
                 }
             ]
-        }).then(function(dbExamples) {
-            res.json(dbExamples);
+        }).then(function(results) {
+            console.log(results, res)
+            res.json(results);
         });
-    });
+      });
+    
 };
 
 

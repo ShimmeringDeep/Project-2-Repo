@@ -1,11 +1,20 @@
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
-      userName: {
+      oauthID: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+      },
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           len: [1, 120]
         }
+      },
+      created: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW
       },
       password: {
         type: DataTypes.STRING,
@@ -33,6 +42,7 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         len: [1, 200]
       }
+
     });
   
     User.associate = function (models) {
