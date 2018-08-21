@@ -70,13 +70,46 @@ passport.serializeUser(function(user, done) {
 // ------------------------------------------------------------------------------------- </serialize and deserialize>
 
 // ------------------------------------------------------------------------------------- <routes>
+app.get("/api/comments", function(req, res) {
 
+        
+  var eventID = req.body.eventfulID;
+  var userId = req.body.userId;
+
+  db.Comment.findAll({
+      where: {
+         isGoing: true
+      },
+      include: [
+          {
+              model: db.User,
+              where: {
+                  id: 1
+              }
+          },
+          {
+              model: db.Event,
+              where: {
+                  id: 1
+              }
+          }
+      ]
+  }).then(function(results) {
+      console.log(results, res)
+      res.json(results);
+  });
+});
 
 // ----------------------------------------------------------------------- User
 require("./routes/htmlRoutes")(app);
 
 // ----------------------------------------------------------------------- Admin
 require("./routes/adminRoutes")(app);
+
+//-------------------------------------------------------------------------Comments
+require("./routes/commentRoute")(app);
+
+
 
 
 
@@ -100,12 +133,3 @@ db.sequelize.sync(syncOptions).then(function () {
         );
     });
 });
-
-// ------------------------------------------------------------------------------------- <authentication test>
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    res.redirect("/");
-  }
-// ------------------------------------------------------------------------------------- </authentication test>
-
-module.exports = app;
