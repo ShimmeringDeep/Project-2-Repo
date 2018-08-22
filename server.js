@@ -70,44 +70,43 @@ passport.serializeUser(function(user, done) {
 // ------------------------------------------------------------------------------------- </serialize and deserialize>
 
 // ------------------------------------------------------------------------------------- <routes>
-app.get("/api/comments", function(req, res) {
+// app.get("/api/comments", function(req, res) {
 
         
-  var eventID = req.body.eventfulID;
-  var userId = req.body.userId;
+//   var eventID = req.body.eventfulID;
+//   var userId = req.body.userId;
 
-  db.Comment.findAll({
-      where: {
-         isGoing: true
-      },
-      include: [
-          {
-              model: db.User,
-              where: {
-                  id: 1
-              }
-          },
-          {
-              model: db.Event,
-              where: {
-                  id: 1
-              }
-          }
-      ]
-  }).then(function(results) {
-      console.log(results, res)
-      res.json(results);
-  });
-});
+//   db.Comment.findAll({
+//       where: {
+//          isGoing: true
+//       },
+//       include: [
+//           {
+//               model: db.User,
+//             //   where: {
+//             //       id: 1
+//             //   }
+//           },
+//           {
+//               model: db.Event,
+//             //   where: {
+//             //       id: 1
+//             //   }
+//           }
+//       ]
+//   }).then(function(results) {
+//       console.log(results, res)
+//       res.json(results);
+//   });
+// });
 
 // ----------------------------------------------------------------------- User
-require("./routes/htmlRoutes")(app);
 
 // ----------------------------------------------------------------------- Admin
-require("./routes/adminRoutes")(app);
-
+require("./routes/adminRoutes.js")(app);
+require("./routes/commentRoutes.js")(app);
+require("./routes/htmlRoutes.js")(app);
 //-------------------------------------------------------------------------Comments
-require("./routes/commentRoute")(app);
 
 
 

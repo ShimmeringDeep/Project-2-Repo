@@ -151,6 +151,9 @@
       </div>
       <div class="col">
         <p>Attending</p>
+        <div id="attend-icon" class="col">
+           {{attending.number}}
+         </div>
       </div>
     </div>
   </div>
@@ -158,7 +161,12 @@
 {{!-- <section>
   <div class="upcoming-events">
     <h1>Comments</h1>
-    <div id="comments-div"></div>
+   <div id="comments-div">
+     {{#each attending.comments}}
+     <h2> {{User.handle}} </h2>
+     <h2> {{user_comment}} </h2>
+     {{/each}}
+   </div>
   </div>
   <footer id="add-comment"></footer>
 </section>
