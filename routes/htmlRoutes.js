@@ -114,8 +114,32 @@ module.exports = function (app) {
   app.get("/events/:id", function (req, res) {
   
     db.Event.findOne({ where: { id: req.params.id } }).then(function (Event) {
-      res.render("event", {  //again check with Enrique 
-        event: Event.dataValues
+      db.Comment.findAll({
+        where: {
+           isGoing: true
+        },
+        include: [
+            {
+                model: db.User,
+            },
+            {
+                model: db.Event,
+                where: {
+                    id: req.params.id
+                }
+            }
+        ]
+    }).then(function(results) {
+        console.log(results.length)
+        var attending = {
+          number: results.length,
+          comments: results
+        }
+        res.render("event", {  //again check with Enrique 
+          event: Event.dataValues,
+          attending: attending
+        });
+        // res.json(attending);
       });
     });
   });

@@ -1,23 +1,23 @@
 var ids = {
     facebook: {
-      clientID: process.env.SF1_KEY,
-      clientSecret: process.env.SF2_KEY,
-      callbackURL: process.env.SF3_KEY,
+      clientID: '325649148172616',
+      clientSecret: '1d8e6907996b98c6c01a85220712a689',
+      callbackURL: 'http://127.0.0.1:1337/auth/facebook/callback'
     },
     twitter: {
-      consumerKey: process.env.ST1_KEY,
-      consumerSecret: process.env.ST2_KEY,
-      callbackURL: process.env.ST3_KEY
+      consumerKey: '7XSr2AQMuLen87UvwMGpyQEEV',
+      consumerSecret: 'wVoBBd52Ee3il2L7jLQmLVLOvERkyZaDT7sLhFjDU1lHaIhdLY',
+      callbackURL: "http://127.0.0.1:1337/auth/twitter/callback"
     },
     github: {
-      clientID: process.env.SGIT1_KEY,
-      clientSecret: process.env.SGIT2_KEY,
-      callbackURL: process.env.SGIT3_KEY,
+      clientID: '9de52fb3c733b26b5ac5',
+      clientSecret: '305d444f104365577842e7944673d78481fd50c4',
+      callbackURL: "http://127.0.0.1:1337/auth/github/callback"
     },
     google: {
-      clientID: process.env.SG1_KEY,
-      clientSecret: process.env.SG2_KEY,
-      callbackURL: process.env.SG3_KEY
+      clientID: '147601512434-m3ud0e1h6m21icu5bkrlr62ofeufogpm.apps.googleusercontent.com',
+      clientSecret: 'ac9Q5RoV4sFbpIZyv8HIYEJP',
+      callbackURL: 'http://127.0.0.1:1337/auth/google/callback'
     }
   };
   
