@@ -12,30 +12,53 @@
         <div class="collapse navbar-collapse" id="navcol-1" style="font-size:13px;font-family:Montserrat, sans-serif;color:rgb(255,255,255);">
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item" role="presentation">
-              <a class="nav-link active" href="#" id="create-event" style="background-color:rgba(255,255,255,0.54);">Create an Event</a>
+              <a class="nav-link active" href="#" id="create-event" style="background-color:rgba(255,255,255,0.54);">Create
+                an Event</a>
             </li>
             <li class="nav-item" role="presentation">
-              <a class="nav-link" href="#" id="login-link" style="background-color:rgba(255,255,255,0.47);">Log in</a>
+              <a id="login-clicky" class="nav-link" href="#" id="login-link" style="background-color:rgba(255,255,255,0.47);">Log
+                in
+              </a>
             </li>
             <li class="nav-item" role="presentation">
-              <a class="nav-link" href="#" id="signup-link" style="color:#5f5f5f;background-color:rgba(255,255,255,0.57);">Sign up</a>
-            {{!-- </li> --}}
+
+              <a id="signup-clicky" class="nav-link" href="#" id="signup-link" style="color:#5f5f5f;background-color:rgba(255,255,255,0.57);">Sign
+                up
+              </a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
   </div>
   <div id="hero-mid">
-    <h1 class="text-center" id="Title" style="background-color:rgba(255,255,255,0.41);">What do you like to do?</h1>
-    <h2 class="text-center" id="sub-title" style="background-color:rgba(255,255,255,0.31);">Meet people with inTheBand</h2>
+
+    <h1 class="text-center" id="Title" style="background-color:rgba(255,255,255,0.41);">
+      <p class="first">
+        <span class="another">What do you like to do?</span>
+      </p>
+    </h1>
+    <h1 class="text-center" id="Title" style="background-color:rgba(255,255,255,0.41);">
+      <p class="first">
+        <span class="another">Meet people with InTheBand</span>
+      </p>
+    </h1>
+    {{!-- <h1 class="text-center" id="Title" style="background-color:rgba(255,255,255,0.41);">
+      <p class="first">
+        <span class="animation_text_word"></span>
+      </p>
+    </h1> --}}
+    {{!--
+    <h2 class="text-center" id="sub-title" style="background-color:rgba(255,255,255,0.31);">Meet people with inTheBand</h2> --}}
   </div>
   <div id="hero-bottom">
     <div class="container">
       <div class="row">
         <div class="col" id="signup-col">
-          <button class="btn btn-primary" id="login-btn" type="button" style="background-color:#b70379;color:rgb(255,255,255);">Log in</button>
+          <button class="btn btn-primary" id="login-btn" type="button">Log in
+          </button>
           <p>Don't Have An Account?
-            <button class="btn btn-primary" id="signup-btn" type="button" style="background-color:#b70379;color:rgb(255,255,255);">Sign Up</button>
+            <button class="btn btn-primary" id="signup-btn" type="button">Sign Up</button>
           </p>
         </div>
       </div>
@@ -54,7 +77,7 @@
         </div>
         <div class="modal-body">
           <div class="login-dark">
-            <form method="post">
+            <form method="post" class="modal-css">
               <h2 class="sr-only">Login Form</h2>
               <div class="illustration">
                 <i class="icon ion-ios-locked-outline"></i>
@@ -66,28 +89,29 @@
                 <input class="form-control" type="password" name="password" placeholder="Password">
               </div>
               <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">Log In</button>
+                <button class="btn btn-primary btn-block modal-btn-style" type="submit">Log In</button>
               </div>
               <a href="#" class="forgot">Forgot your email or password?</a>
             </form>
           </div>
         </div>
-        <div class="modal-footer">
+        {{!-- <div class="modal-footer">
           <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
-          <button class="btn btn-primary" type="button">Save</button>
+          <button class="btn btn-primary modal-btn-style" type="button">Save</button>
+        </div> --}}
+
+
+        <!-- Stuck this here for now -->
+        <div id="social-media-login">
+        <h1>Login with</h1>
+          <div class="row">
+            <div class="col"><a href="/auth/facebook"><i class="fa fa-facebook" style="font-size:18px;"></i></a></div>
+            <div class="col"><a href="/auth/twitter"><i class="fa fa-twitter" style="font-size:18px;"></i></a></div>
+            <div class="col"><a href="/auth/github"><i class="fa fa-github" style="font-size:18px;"></i></a></div>
+            <div class="col"><a href="/auth/google"><i class="fa fa-google" style="font-size:18px;"></i></a></div>
+          </div>
         </div>
-
-
-<!-- Stuck this here for now -->
-   <br>
-   <a href="/auth/facebook">Login with Facebook</a>
-    <br>
-    <a href="/auth/twitter">Login with Twitter</a>
-    <br>
-    <a href="/auth/github">Login with Github</a>
-    <br>
-    <a href="/auth/google">Login with Google</a>
-<!-- end of stuck stuff -->
+        <!-- end of stuck stuff -->
 
       </div>
     </div>
@@ -110,7 +134,7 @@
               <div class="illustration">
                 <i class="icon ion-ios-locked-outline"></i>
               </div>
-               <div class="form-group">
+              <div class="form-group">
                 <input class="form-control" type="name" name="name" placeholder="Raul Sanchez">
               </div>
               <div class="form-group">
@@ -126,16 +150,39 @@
                 <input class="form-control" type="address" name="address" placeholder="1300 N Post Oak">
               </div>
               <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+                <button class="btn btn-primary btn-block modal-btn-style" type="submit">Sign Up</button>
               </div>
             </form>
           </div>
         </div>
         <div class="modal-footer">
           <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
-          <button class="btn btn-primary" type="button">Save</button>
+          <button class="btn btn-primary modal-btn-style" type="button">Save</button>
         </div>
       </div>
     </div>
   </div>
+
+
 </section>
+
+
+<script>
+  $("#login-btn").on('click', function () {
+    $("#login-modal").modal("toggle");
+  });
+
+  $("#signup-btn").on('click', function () {
+    $("#signup-modal").modal("toggle");
+  });
+  $("#login-clicky").on('click', function () {
+    $("#login-modal").modal("toggle");
+  });
+
+  $("#signup-clicky").on('click', function () {
+    $("#signup-modal").modal("toggle");
+  });
+
+  
+</script>
+

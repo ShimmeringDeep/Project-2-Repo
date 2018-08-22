@@ -115,16 +115,32 @@ module.exports = function (app) {
   // Load single event page and pass in an event by id
   app.get("/events/:id", function (req, res) {
     db.Event.findOne({ where: { id: req.params.id } }).then(function (Event) {
-      {  //again check with Enrique 
-        db.Comment.findOne({ where: { eventId: req.params.id } }).then(function (Comment) {
-          objectRes = {
-           event: Event,
-           comment: Comment
-          }
-        
-          res.render("event", objectRes);
+      db.Comment.findAll({
+        include: [
+            {
+                model: db.User,
+            },
+            {
+                model: db.Event,
+                where: {
+                    id: req.params.id
+                }
+            }
+        ]
+    }).then(function(results) {
+        console.log(results.length)
+         var number = 
+          console.log("this is the number of attending " + number);
+        var attending = {
+          number: results.length,
+          comments: results
+        }
+        res.render("event", {  //again check with Enrique 
+          event: Event.dataValues,
+          attending: attending
         });
-      }
+        // res.json(attending);
+      });
     });
   });
   // Render 404 page for any unmatched routes
