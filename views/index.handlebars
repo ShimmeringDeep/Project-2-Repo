@@ -77,19 +77,19 @@
         </div>
         <div class="modal-body">
           <div class="login-dark">
-            <form method="post" class="modal-css">
+            <form action="dashboard" class="modal-css">
               <h2 class="sr-only">Login Form</h2>
               <div class="illustration">
                 <i class="icon ion-ios-locked-outline"></i>
               </div>
               <div class="form-group">
-                <input class="form-control" type="email" name="email" placeholder="Email">
+                <input class="form-control" id="login-email" type="email" name="email" placeholder="Email">
               </div>
               <div class="form-group">
-                <input class="form-control" type="password" name="password" placeholder="Password">
+                <input class="form-control" id="login-password" type="password" name="password" placeholder="Password">
               </div>
               <div class="form-group">
-                <button class="btn btn-primary btn-block modal-btn-style" type="submit">Log In</button>
+                <button class="btn btn-primary btn-block modal-btn-style" id="login-submit" type="submit">Log In</button>
               </div>
               <a href="#" class="forgot">Forgot your email or password?</a>
             </form>
@@ -129,28 +129,28 @@
         </div>
         <div class="modal-body">
           <div class="login-dark">
-            <form method="post">
+            <form action="dashboard.handlebars">
               <h2 class="sr-only">Login Form</h2>
               <div class="illustration">
                 <i class="icon ion-ios-locked-outline"></i>
               </div>
               <div class="form-group">
-                <input class="form-control" type="name" name="name" placeholder="Raul Sanchez">
+                <input class="form-control" id="name" type="name" name="name" placeholder="Raul Sanchez">
               </div>
               <div class="form-group">
-                <input class="form-control" type="email" name="email" placeholder="E-mail">
+                <input class="form-control" id="email" type="email" email="email" placeholder="E-mail">
               </div>
               <div class="form-group">
-                <input class="form-control" type="password" name="password" placeholder="Password">
+                <input class="form-control" id="password" type="password" password="password" placeholder="Password">
               </div>
               <div class="form-group">
-                <input class="form-control" type="handle" name="handle" placeholder="@partyboy">
+                <input class="form-control" id="handle" type="handle" handle="handle" placeholder="@partyboy">
               </div>
               <div class="form-group">
-                <input class="form-control" type="address" name="address" placeholder="1300 N Post Oak">
+                <input class="form-control" id="address" type="address" address="address" placeholder="1300 N Post Oak">
               </div>
               <div class="form-group">
-                <button class="btn btn-primary btn-block modal-btn-style" type="submit">Sign Up</button>
+                <button class="btn btn-primary btn-block modal-btn-style" id="signup-submit" type="submit">Sign Up</button>
               </div>
             </form>
           </div>
