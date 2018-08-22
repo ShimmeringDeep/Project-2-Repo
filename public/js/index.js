@@ -120,3 +120,4 @@ function ronnie_tm_animate_text(){
 
 // This is for Modal
 
+
