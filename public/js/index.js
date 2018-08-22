@@ -140,13 +140,13 @@
   };
 console.log(newUser);
   // send an AJAX POST-request with jQuery
-  // $.post("/dashboard", newUser)
-  //   // on success, run this callback
-  //   .then(function(data) {
-  //     // log the data we found
-  //     console.log(data);
-  //     // tell the user we're adding a character with an alert window
-  //   });
+  $.post("/dashboard", newUser)
+    // on success, run this callback
+    .then(function(data) {
+      // log the data we found
+      console.log(data);
+      // tell the user we're adding a character with an alert window
+    });
   });
   $("#login-submit").on("click", function(event) {
     event.preventDefault();

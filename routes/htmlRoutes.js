@@ -35,19 +35,21 @@ module.exports = function (app) {
     });
   });
 
-  // app.post("/dashboard", function(req, res) {
-  //   // Take the request...
-  //   var user = req.body;
+  app.post("/dashboard", function(req, res) {
+    // Take the request...
+    var user = req.body;
 
-  //       // Then add the character to the database using sequelize
-  //   db.User.create({
-  //     name: user.name,
-  //     email: user.email,
-  //     password: user.password,
-  //     handle: user.handle,
-  //     address: user.address
-  //   });
-  // });
+        // Then add the character to the database using sequelize
+    db.User.create({
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      handle: user.handle,
+      address: user.address
+    }).then(function(res){
+      res.location("/dashboard")
+    });
+  });
 
 
 
