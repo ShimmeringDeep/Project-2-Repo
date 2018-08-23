@@ -105,6 +105,7 @@
   // -------------   ANIMATE TEXT  -------------------
   // -------------------------------------------------
 
+
   jQuery(document).ready(function () {
 
     "use strict";
@@ -125,3 +126,39 @@
       backDelay: 2e3
     });
   }
+
+  // This is for POST Method
+  $("#signup-submit").on("click", function(event) {
+    event.preventDefault();
+
+  var newUser = {
+    oauthID: 1.1,
+    name: $("#name").val().trim(),
+    email: $("#email").val().trim(),
+    password: $("#password").val().trim(),
+    handle: $("#handle").val().trim(),
+    address: $("#address").val().trim()
+  };
+console.log(newUser);
+  // send an AJAX POST-request with jQuery
+  $.post("/dashboard", newUser)
+    // on success, run this callback
+    .then(function(data) {
+      // log the data we found
+      // console.log(data);
+
+      window.location = data.url;
+      // tell the user we're adding a character with an alert window
+    });
+  });
+  
+  $("#login-submit").on("click", function(event) {
+    event.preventDefault();
+
+  var user = {
+    email: $("#login-email").val().trim(),
+    password: $("#login-password").val().trim(),
+  };
+console.log(user);
+ 
+  });
