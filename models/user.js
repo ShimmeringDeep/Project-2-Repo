@@ -1,5 +1,9 @@
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
+      oauthID: {
+        type: DataTypes.FLOAT,
+        allowNull: true
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,

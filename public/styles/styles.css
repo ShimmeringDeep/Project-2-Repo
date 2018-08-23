@@ -1,8 +1,11 @@
 
 
 body {
-  color:rgb(237,240,242);
-  background-image:url("none");
+  /* color:rgb(237,240,242); */
+  background-image:url("../images/group4.jpg");
+  background-attachment: fixed;
+  /* background-position:center; */
+  background-size:100%;
 }
 
 .list-group-item {
@@ -21,19 +24,19 @@ body {
 
 .navbar-light .navbar-brand {
   font-family:'Black Ops One', cursive;
-  width:150px;
+  width:165px;
   background-position:center;
   background-size:80%;
-  color:rgba(0,0,0,0.9);
+  color:white;
   background-color:rgba(255,255,255,0.22);
   padding-left:10px;
 }
 
-@media (min-width: 370px) {
-  .navbar-light .navbar-brand {
-    color:white;
-  }
+#band-icon {
+  color: #b70379;
+  font-weight: 900;
 }
+
 
 #navcol-1 {
   text-transform:uppercase;
@@ -49,7 +52,7 @@ body {
 }
 
 #hero-mid {
-  color:black;
+  color:white;
 }
 
 @media (min-width: 768px) {
@@ -66,6 +69,8 @@ body {
   font-weight:600;
   letter-spacing:0px;
   font-size:30px;
+  padding: 0.5px 0px;
+  opacity: 0.8;
 }
 
 #sub-title {
@@ -82,11 +87,19 @@ body {
   margin-bottom:40px;
 }
 
+#the-navbar{
+  margin-bottom: 5%;
+}
+
 #dash-container {
   background-color: white;
-  color: #323232;
+  color: black;
   font-weight: 300;
+  opacity: .95;
+  margin-top: 100px;
 }
+
+
 
 #col-checkbox {
   text-align: center;
@@ -110,9 +123,8 @@ body {
 }
 
 #signup-btn {
-  background-color:rgba(255,255,255,0.47);
   color:rgb(255,255,255);
-  opacity: .5;
+  font-weight: 650;
 }
 
 #signup-btn:hover {
@@ -153,5 +165,10 @@ body {
   font-weight: 650;
 }
 
+@media (max-width: 370px) {
+  #dash-container {
+    margin:0px 100px;
+  }
+}
 
 

@@ -132,6 +132,7 @@
     event.preventDefault();
 
   var newUser = {
+    oauthID: 1.1,
     name: $("#name").val().trim(),
     email: $("#email").val().trim(),
     password: $("#password").val().trim(),
@@ -144,10 +145,13 @@ console.log(newUser);
     // on success, run this callback
     .then(function(data) {
       // log the data we found
-      console.log(data);
+      // console.log(data);
+
+      window.location = data.url;
       // tell the user we're adding a character with an alert window
     });
   });
+  
   $("#login-submit").on("click", function(event) {
     event.preventDefault();
 

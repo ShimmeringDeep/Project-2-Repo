@@ -46,8 +46,11 @@ module.exports = function (app) {
       password: user.password,
       handle: user.handle,
       address: user.address
-    }).then(function(res){
-      res.location("/dashboard")
+    }).then(function(user){
+      var url ={
+        url : "/dashboard"
+      }
+      res.json (url)
     });
   });
 
@@ -58,84 +61,82 @@ module.exports = function (app) {
   //app.get("/ping", routes.ping);
 
   // ----------------------------------------------------------------------- Account
-  app.get("/account", ensureAuthenticated, function(req, res){
-      User.findById(req.session.passport.user, function(err, user) {
-        if(err) {
-          console.log(err);  // handle errors
-        } else {
-          res.render("account", { user: user});
-        }
-      });
+  app.get("/account", ensureAuthenticated, function (req, res) {
+    User.findById(req.session.passport.user, function (err, user) {
+      if (err) {
+        console.log(err);  // handle errors
+      } else {
+        res.render("account", { user: user });
+      }
+    });
   });
 
   // ----------------------------------------------------------------------- Facebook
   app.get("/auth/facebook",
     passport.authenticate("facebook"),
-    function(req, res){});
+    function (req, res) { });
   app.get("/auth/facebook/callback",
     passport.authenticate("facebook", { failureRedirect: "/" }),
-    function(req, res) {
+    function (req, res) {
       res.redirect("/account");
-  });
+    });
 
   // ----------------------------------------------------------------------- Twitter
   app.get("/auth/twitter",
     passport.authenticate("twitter"),
-    function(req, res){});
+    function (req, res) { });
   app.get("/auth/twitter/callback",
     passport.authenticate("twitter", { failureRedirect: "/" }),
-    function(req, res) {
+    function (req, res) {
       res.redirect("/account");
-  });
+    });
 
   // ----------------------------------------------------------------------- Github
   app.get("/auth/github",
     passport.authenticate("github"),
-    function(req, res){});
+    function (req, res) { });
   app.get("/auth/github/callback",
     passport.authenticate("github", { failureRedirect: "/" }),
-    function(req, res) {
+    function (req, res) {
       res.redirect("/account");
-  });
+    });
 
   // ----------------------------------------------------------------------- Google  
   app.get("/auth/google",
-    passport.authenticate("google", { scope: [
-      "https://www.googleapis.com/auth/plus.login",
-      "https://www.googleapis.com/auth/plus.profile.emails.read"
-    ] }
-  ));
+    passport.authenticate("google", {
+      scope: [
+        "https://www.googleapis.com/auth/plus.login",
+        "https://www.googleapis.com/auth/plus.profile.emails.read"
+      ]
+    }
+    ));
   app.get("/auth/google/callback",
     passport.authenticate("google", { failureRedirect: "/" }),
-    function(req, res) {
+    function (req, res) {
       res.redirect("/account");
-  });
+    });
 
   // ----------------------------------------------------------------------- Account
-  app.get("/account", ensureAuthenticated, function(req, res){
-      User.findById(req.session.passport.user, function(err, user) {
-          if(err) {
-          console.log(err);  // handle errors
-          } else {
-          res.render("account", { user: user});
-          }
-      });
+  app.get("/account", ensureAuthenticated, function (req, res) {
+    User.findById(req.session.passport.user, function (err, user) {
+      if (err) {
+        console.log(err);  // handle errors
+      } else {
+        res.render("account", { user: user });
+      }
+    });
   });
 
   // ----------------------------------------------------------------------- Logout
-  app.get("/logout", function(req, res){
+  app.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/");
-  });  
+  });
 
   // Load single event page and pass in an event by id
   app.get("/events/:id", function (req, res) {
-  
     db.Event.findOne({ where: { id: req.params.id } }).then(function (Event) {
       db.Comment.findAll({
-        where: {
-           isGoing: true
-        },
         include: [
             {
                 model: db.User,
@@ -149,6 +150,8 @@ module.exports = function (app) {
         ]
     }).then(function(results) {
         console.log(results.length)
+         var number = 
+          console.log("this is the number of attending " + number);
         var attending = {
           number: results.length,
           comments: results
@@ -161,7 +164,6 @@ module.exports = function (app) {
       });
     });
   });
-
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
     res.render("404");

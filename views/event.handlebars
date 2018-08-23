@@ -1,134 +1,84 @@
+<style>
+  body {}
 
-   <style>
-     body {
-  background-color:rgb(255,255,255);
-  color:rgb(54,55,57);
-  background-image:url("none");
-  width:100%;
-}
+  .list-group-item {
+    line-height: 2.5;
+  }
 
-.navbar-light .navbar-brand {
-  font-family:'Black Ops One', cursive;
-  width:150px;
-  background-position:center;
-  background-size:80%;
-  color:rgba(254,254,254,0.9);
-  background-color:rgba(255,255,255,0.22);
-  padding-left:10px;
-}
+  #itb-hero {
+    width: 100%;
+    height: 100vh;
+    background-image: url("../images/smallgroup4.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 
-#navcol-1 {
-  font-family:Montserrat, sans-serif;
-  text-transform:uppercase;
-}
+  .navbar-light .navbar-brand {
+    font-family: 'Black Ops One', cursive;
+    width: 150px;
+    background-position: center;
+    background-size: 80%;
+    color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(255, 255, 255, 0.22);
+    padding-left: 10px;
+  }
 
-#single-event-heading {
-  padding-top:60px;
-  text-align:center;
-  width:100%;
-}
+  #navcol-1 {
+    text-transform: uppercase;
+  }
 
-#comments-heading {
-  text-align:center;
-}
+  #headings {
+    font-family: 'Black Ops One', cursive;
+  }
 
-#event-date-col {
-  text-align:center;
-}
+  #col-checkbox {
+    text-align: center;
+  }
 
-#event-venue-p {
-  text-align:center;
-}
+  #dash-heading {
+    padding-top: 50px;
+    text-align: center;
+    color: #aca9a9;
+  }
 
-#event-address-p {
-  text-align:center;
-}
+  #dash-events-div {
+    margin: auto;
+    text-align: center;
+  }
 
-#event-attending-col {
-  text-align:center;
-}
+  #dash-events-title {
+    font-weight: 650;
+  }
+</style>
 
-#event-map-col {
-  text-align:center;
-}
-
-#event-counter-col {
-  text-align:center;
-  padding-right:0;
-  padding-left:0;
-}
-
-#event-address-col {
-  padding-right:0;
-  padding-left:0;
-}
-
-#comments-col {
-  padding-right:0;
-}
-
-#event-venue-col {
-  padding:0;
-}
-
-#event-map-col {
-  padding:0;
-}
-
-#event-page-navbar {
-  padding-right:0;
-}
-
-#nav-container {
-  width:90%;
-  margin:auto;
-}
-   </style>
-   
-   
-   <nav class="navbar navbar-light navbar-expand-md fixed-top bg-dark" id="event-page-navbar">
-        <div class="container" id="nav-container"><a class="navbar-brand" href="#">inTheBand&nbsp;<i class="fa fa-circle-o-notch" style="font-size:18px;"></i></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div
-                class="collapse navbar-collapse" id="navcol-1" style="font-size:13px;font-family:Montserrat, sans-serif;color:rgb(255,255,255);">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#" data-aos="fade-up" data-aos-duration="600" id="create-event" style="background-color:rgba(255,255,255,0.54);">Create an Event</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" data-aos="fade-up" data-aos-duration="600" id="login-link" style="background-color:rgba(255,255,255,0.47);">Log in</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" data-aos="fade-up" data-aos-duration="700" id="signup-link" style="color:#5f5f5f;background-color:rgba(255,255,255,0.57);">Sign up</a></li>
-                </ul>
-        </div>
-        </div>
-    </nav>
-    <section>
-        <h1 id="single-event-heading">Heading</h1>
-    </section>
-    <div>
-        <div class="row">
-            <div class="col" id="event-date-col">
-                <p>Date:</p>
-            </div>
-            <div class="col" id="event-venue-col">
-                <p id="event-venue-p">Venue:</p>
-            </div>
-            <div class="col" id="event-address-col">
-                <p id="event-address-p">Address:</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col" id="event-attending-col"><i class="fa fa-star"></i></div>
-            <div class="col" id="event-map-col"><i class="fa fa-map-marker"></i></div>
-            <div class="col" id="event-counter-col"><i class="fa fa-users"></i></div>
-        </div>
+<nav class="navbar navbar-light navbar-expand-md fixed-top bg-dark" class="the-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">inTheBand&nbsp;
+      <i class="fa fa-circle-o-notch"></i>
+    </a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navcol-1">
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" href="#" id="create-event">Create an Event</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" href="#" id="login-link">Notifications
+          </a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" href="#" id="signup-link">Sign Out
+          </a>
+        </li>
+      </ul>
     </div>
-    <section>
-        <h1 id="comments-heading">Comments</h1>
-    </section>
-    <div>
-        <div class="row">
-            <div class="col" id="comments-col"></div>
-        </div>
-    </div>
-
-{{!-- <section>
+  </div>
+</nav>
+<section>
   <div class="your-events">
     <h1 id="eventname" style="padding:50px;">Event Name{{event.title}}</h1>
     <div class="row">
@@ -152,22 +102,27 @@
       <div class="col">
         <p>Attending</p>
         <div id="attend-icon" class="col">
-           {{attending.number}}
-         </div>
+          {{attending.number}}
+        </div>
       </div>
     </div>
   </div>
-</section> --}}
-{{!-- <section>
+</section>
+<section>
   <div class="upcoming-events">
     <h1>Comments</h1>
-   <div id="comments-div">
-     {{#each attending.comments}}
-     <h2> {{User.handle}} </h2>
-     <h2> {{user_comment}} </h2>
-     {{/each}}
-   </div>
+    <div id="comments-div">
+      {{#each attending.comments}}
+      <h2> {{User.handle}} </h2>
+      <h2> {{user_comment}} </h2>
+      {{/each}}
+    </div>
   </div>
-  <footer id="add-comment"></footer>
+  <footer id="add-comment">
+    <textarea rows="4" cols="50" name="comment" form="usrform">
+Enter comment here...</textarea>
+    <div class="form-group">
+      <button class="btn btn-primary btn-block modal-btn-style" id="comment-submit" type="submit">Submit</button>
+    </div>
+  </footer>
 </section>
- --}}

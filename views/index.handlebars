@@ -3,7 +3,7 @@
     <nav class="navbar navbar-light navbar-expand-md">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">inTheBand&nbsp;
-          <i class="fa fa-circle-o-notch" style="font-size:18px;"></i>
+          <i class="fa fa-circle-o-notch" id="band-icon" style="font-size:22px;"></i>
         </a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
           <span class="sr-only">Toggle navigation</span>
@@ -11,10 +11,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navcol-1" style="font-size:13px;font-family:Montserrat, sans-serif;color:rgb(255,255,255);">
           <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item" role="presentation">
-              <a class="nav-link active" href="#" id="create-event" style="background-color:rgba(255,255,255,0.54);">Create
-                an Event</a>
-            </li>
             <li class="nav-item" role="presentation">
               <a id="login-clicky" class="nav-link" href="#" id="login-link" style="background-color:rgba(255,255,255,0.47);">Log
                 in
@@ -33,12 +29,12 @@
   </div>
   <div id="hero-mid">
 
-    <h1 class="text-center" id="Title" style="background-color:rgba(255,255,255,0.41);">
+    <h1 class="text-center" id="Title" style="background-color:#b70379">
       <p class="first">
         <span class="another">What do you like to do?</span>
       </p>
     </h1>
-    <h1 class="text-center" id="Title" style="background-color:rgba(255,255,255,0.41);">
+    <h1 class="text-center" id="Title" style="background-color:#b70379">
       <p class="first">
         <span class="another">Meet people with InTheBand</span>
       </p>
@@ -57,8 +53,8 @@
         <div class="col" id="signup-col">
           <button class="btn btn-primary" id="login-btn" type="button">Log in
           </button>
-          <p>Don't Have An Account?
-            <button class="btn btn-primary" id="signup-btn" type="button">Sign Up</button>
+          <p style="font-weight:600">Don't Have An Account?
+            <a id="signup-btn">Sign Up</a>
           </p>
         </div>
       </div>
