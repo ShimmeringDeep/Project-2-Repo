@@ -35,24 +35,27 @@ module.exports = function (app) {
     });
   });
 
-  app.post("/dashboard", function(req, res) {
+  app.post("/dashboard", function (req, res) {
     // Take the request...
     var user = req.body;
 
-        // Then add the character to the database using sequelize
+    // Then add the character to the database using sequelize
     db.User.create({
       name: user.name,
       email: user.email,
       password: user.password,
       handle: user.handle,
       address: user.address
-    }).then(function(user){
-      var url ={
-        url : "/dashboard"
+    }).then(function (user) {
+      var url = {
+        url: "/dashboard"
       }
-      res.json (url)
+      res.json(url)
     });
   });
+
+
+
 
 
 
@@ -138,34 +141,50 @@ module.exports = function (app) {
     db.Event.findOne({ where: { id: req.params.id } }).then(function (Event) {
       db.Comment.findAll({
         include: [
-            {
-                model: db.User,
-            },
-            {
-                model: db.Event,
-                where: {
-                    id: req.params.id
-                }
+          {
+            model: db.User,
+          },
+          {
+            model: db.Event,
+            where: {
+              id: req.params.id
             }
+          }
         ]
-    }).then(function(results) {
-        console.log(results.length)
-         var number = 
-          console.log("this is the number of attending " + number);
+      }).then(function (results) {
+        
         var attending = {
           number: results.length,
-          comments: results
+          comments: results,
+          url: "/events/:"+results.eventId
         }
+        res.json(results.eventId)
+
         res.render("event", {  //again check with Enrique 
-          event: Event.dataValues,
+          event: Event,
           attending: attending
         });
         // res.json(attending);
       });
     });
   });
+
+
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
     res.render("404");
   });
 };
+
+
+      // //llamada al evento segun el id
+      // app.get("/events/:id", function(req, res) {
+      //   // Take the request...
+      //   var id = req.body
+
+      // }).then(function(event){
+      //     var url ={
+      //       url : `/events/${event.id}`
+      //     }
+      //     res.json (url)
+      //   });
