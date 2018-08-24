@@ -3,8 +3,7 @@ module.exports = function (sequelize, DataTypes) {
         timestamp: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: DataTypes.NOW  // this line can give some problems
-            // sequelize.fn("NOW") possible solution if line up gives problems
+            defaultValue: DataTypes.NOW  
         },
         user_comment: {
             type: DataTypes.STRING,

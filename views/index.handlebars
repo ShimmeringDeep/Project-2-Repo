@@ -17,7 +17,6 @@
               </a>
             </li>
             <li class="nav-item" role="presentation">
-
               <a id="signup-clicky" class="nav-link" href="#" id="signup-link" style="color:#5f5f5f;background-color:rgba(255,255,255,0.57);">Sign
                 up
               </a>
@@ -28,7 +27,6 @@
     </nav>
   </div>
   <div id="hero-mid">
-
     <h1 class="text-center" id="Title" style="background-color:#b70379">
       <p class="first">
         <span class="another">What do you like to do?</span>
@@ -39,13 +37,6 @@
         <span class="another">Meet people with InTheBand</span>
       </p>
     </h1>
-    {{!-- <h1 class="text-center" id="Title" style="background-color:rgba(255,255,255,0.41);">
-      <p class="first">
-        <span class="animation_text_word"></span>
-      </p>
-    </h1> --}}
-    {{!--
-    <h2 class="text-center" id="sub-title" style="background-color:rgba(255,255,255,0.31);">Meet people with inTheBand</h2> --}}
   </div>
   <div id="hero-bottom">
     <div class="container">
@@ -73,7 +64,7 @@
         </div>
         <div class="modal-body">
           <div class="login-dark">
-            <form action="dashboard" class="modal-css">
+            <form class="modal-css">
               <h2 class="sr-only">Login Form</h2>
               <div class="illustration">
                 <i class="icon ion-ios-locked-outline"></i>
@@ -91,24 +82,9 @@
             </form>
           </div>
         </div>
-        {{!-- <div class="modal-footer">
+        <div class="modal-footer">
           <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
-          <button class="btn btn-primary modal-btn-style" type="button">Save</button>
-        </div> --}}
-
-
-        <!-- Stuck this here for now -->
-        <div id="social-media-login">
-        <h1>Login with</h1>
-          <div class="row">
-            <div class="col"><a href="/auth/facebook"><i class="fa fa-facebook" style="font-size:18px;"></i></a></div>
-            <div class="col"><a href="/auth/twitter"><i class="fa fa-twitter" style="font-size:18px;"></i></a></div>
-            <div class="col"><a href="/auth/github"><i class="fa fa-github" style="font-size:18px;"></i></a></div>
-            <div class="col"><a href="/auth/google"><i class="fa fa-google" style="font-size:18px;"></i></a></div>
-          </div>
         </div>
-        <!-- end of stuck stuff -->
-
       </div>
     </div>
   </div>
@@ -125,13 +101,10 @@
         </div>
         <div class="modal-body">
           <div class="login-dark">
-            <form method="POST" action="/dashboard">
+            <form method="POST" action="/sign-up">
               <h2 class="sr-only">Login Form</h2>
               <div class="illustration">
                 <i class="icon ion-ios-locked-outline"></i>
-              </div>
-              <div class="form-group">
-                <input class="form-control" id="name" type="name" name="name" placeholder="Raul Sanchez">
               </div>
               <div class="form-group">
                 <input class="form-control" id="email" type="email" email="email" placeholder="E-mail">
@@ -143,9 +116,6 @@
                 <input class="form-control" id="handle" type="handle" handle="handle" placeholder="@partyboy">
               </div>
               <div class="form-group">
-                <input class="form-control" id="address" type="address" address="address" placeholder="1300 N Post Oak">
-              </div>
-              <div class="form-group">
                 <button class="btn btn-primary btn-block modal-btn-style" id="signup-submit" type="submit">Sign Up</button>
               </div>
             </form>
@@ -153,15 +123,12 @@
         </div>
         <div class="modal-footer">
           <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
-          <button class="btn btn-primary modal-btn-style" type="button">Save</button>
         </div>
       </div>
     </div>
   </div>
 
-
 </section>
-
 
 <script>
   $("#login-btn").on('click', function () {
@@ -178,7 +145,4 @@
   $("#signup-clicky").on('click', function () {
     $("#signup-modal").modal("toggle");
   });
-
-  
 </script>
-
