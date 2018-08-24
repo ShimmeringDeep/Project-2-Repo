@@ -1,6 +1,7 @@
 $( document ).ready(function() {
 
   $("#signup-submit").on("click", function (event) {
+
     event.preventDefault();
   
     var newUser = {
@@ -22,6 +23,29 @@ $( document ).ready(function() {
         window.location = data.url;
         // tell the user we're adding a character with an alert window
       });
+  });
+
+
+  // This is for POST Method
+  $(".dash-events-class").on("click", function(event) {
+    event.preventDefault();
+    
+
+    
+    // send an AJAX POST-request with jQuery
+    $.get("/events/:id")
+    // on success, run this callback
+    .then(function(data) {
+
+      console.log(data)
+      console.log( "Event that comes when i click on event div" + data);
+      // log the data we found
+      // console.log(data);
+
+      window.location = data.attending.url;
+      // console.log(data.url);
+      // tell the user we're adding a character with an alert window
+    });
   });
   
   
@@ -84,3 +108,34 @@ $( document ).ready(function() {
 });
 
 
+
+  var user = {
+    email: $("#login-email").val().trim(),
+    password: $("#login-password").val().trim(),
+  };
+console.log(user);
+
+
+
+  $("#comment-submit").on("click", function(event) {
+    event.preventDefault();
+
+  var newComment = {
+    userId: 1,
+    eventId: 1,
+    user_comment: $("#comment").val().trim(),
+    isGoing: $('#isGoing:checked').val()
+
+  };
+console.log(newUser);
+  // send an AJAX POST-request with jQuery
+  $.post("/dashboard", newUser)
+    // on success, run this callback
+    .then(function(data) {
+      // log the data we found
+      // console.log(data);
+
+      window.location = data.url;
+      // tell the user we're adding a character with an alert window
+    });
+  });
