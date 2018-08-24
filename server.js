@@ -104,7 +104,6 @@ passport.serializeUser(function(user, done) {
 
 // ----------------------------------------------------------------------- Admin
 require("./routes/adminRoutes.js")(app);
-require("./routes/commentRoutes.js")(app);
 require("./routes/htmlRoutes.js")(app);
 //-------------------------------------------------------------------------Comments
 
