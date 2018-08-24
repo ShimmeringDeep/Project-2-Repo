@@ -1,6 +1,4 @@
 <style>
-
-
   .list-group-item {
     line-height: 2.5;
   }
@@ -95,6 +93,10 @@
     <div class="row">
       <div class="col">
         <p>Going</p>
+        <form action="/action_page.php">
+          <input id="going-checkbox" type="checkbox" name="attending" value="going"> Attending
+          <br>
+        </form>
       </div>
       <div class="col">
         <p>Map</p>
@@ -120,7 +122,7 @@
   </div>
   <footer id="add-comment">
     <form>
-      <textarea rows="4" cols="50" name="comment" id = "comment" placeholder="Enter your comment here..."></textarea>
+      <textarea rows="4" cols="50" name="comment" id="comment" placeholder="Enter your comment here..."></textarea>
       <div class="form-group">
         <button class="btn btn-primary btn-block modal-btn-style" id="comment-submit" type="submit">Submit</button>
     </form>

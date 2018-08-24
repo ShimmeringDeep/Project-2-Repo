@@ -2,28 +2,16 @@
 
 body {
   /* color:rgb(237,240,242); */
-  background-image:url("none");
+  background-image:url("../images/group4.jpg");
+  background-attachment: fixed;
+  /* background-position:center; */
+  background-size:100%;
 }
 
 .list-group-item {
   line-height: 2.5;
 }
 
-
-animation_text_word{
-  font-size: 70px;
-	font-weight: 600;
-	font-family: "Montserrat";
-	letter-spacing: -1px;
-}
-
-@media (max-width: 768px) {
-  .animation_text_word{font-size: 45px;}
-}
-
-@media (max-width: 480px) {
-  .animation_text_word{font-size: 35px;}
-}
 
 #itb-hero {
   width:100%;
@@ -36,19 +24,19 @@ animation_text_word{
 
 .navbar-light .navbar-brand {
   font-family:'Black Ops One', cursive;
-  width:150px;
+  width:165px;
   background-position:center;
   background-size:80%;
-  color:rgba(0,0,0,0.9);
+  color:white;
   background-color:rgba(255,255,255,0.22);
   padding-left:10px;
 }
 
-@media (min-width: 992px) {
-  .navbar-light .navbar-brand {
-    color:white;
-  }
+#band-icon {
+  color: #b70379;
+  font-weight: 900;
 }
+
 
 #navcol-1 {
   text-transform:uppercase;
@@ -64,7 +52,7 @@ animation_text_word{
 }
 
 #hero-mid {
-  color:black;
+  color:white;
 }
 
 @media (min-width: 768px) {
@@ -81,6 +69,8 @@ animation_text_word{
   font-weight:600;
   letter-spacing:0px;
   font-size:30px;
+  padding: 0.5px 0px;
+  opacity: 0.8;
 }
 
 #sub-title {
@@ -97,11 +87,19 @@ animation_text_word{
   margin-bottom:40px;
 }
 
+#the-navbar{
+  margin-bottom: 5%;
+}
+
 #dash-container {
   background-color: white;
-  color: #323232;
+  color: black;
   font-weight: 300;
+  opacity: .95;
+  margin-top: 100px;
 }
+
+
 
 #col-checkbox {
   text-align: center;
@@ -125,9 +123,8 @@ animation_text_word{
 }
 
 #signup-btn {
-  background-color:rgba(255,255,255,0.47);
   color:rgb(255,255,255);
-  opacity: .5;
+  font-weight: 650;
 }
 
 #signup-btn:hover {
@@ -168,5 +165,10 @@ animation_text_word{
   font-weight: 650;
 }
 
+@media (max-width: 370px) {
+  #dash-container {
+    margin:0px 100px;
+  }
+}
 
 
