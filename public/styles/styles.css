@@ -168,6 +168,10 @@ body {
   text-align: center;
 }
 
+#comments-div{
+  font-size: 10px;
+}
+
 @media (min-width: 768px) {
   body {
     background-image:url("../images/group4.jpg");
