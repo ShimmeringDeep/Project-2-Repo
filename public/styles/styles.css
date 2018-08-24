@@ -1,11 +1,10 @@
 
 
 body {
-  /* color:rgb(237,240,242); */
-  background-image:url("../images/group4.jpg");
+  background-image:url("../images/smallgroup4.jpg");
   background-attachment: fixed;
-  /* background-position:center; */
   background-size:100%;
+  margin: 0 20px;
 }
 
 .list-group-item {
@@ -16,7 +15,6 @@ body {
 #itb-hero {
   width:100%;
   height:100vh;
-  background-image:url("../images/smallgroup4.jpg");
   background-position:center;
   background-size:cover;
   background-repeat:no-repeat;
@@ -55,12 +53,6 @@ body {
   color:white;
 }
 
-@media (min-width: 768px) {
-  #itb-hero {
-    background-image:url("../images/group4.jpg");
-  }
-}
-
 #headings {
   font-family:'Black Ops One', cursive;
 }
@@ -89,17 +81,17 @@ body {
 
 #the-navbar{
   margin-bottom: 5%;
+  background-color: #b70379;
+  color: white;
 }
 
 #dash-container {
   background-color: white;
   color: black;
   font-weight: 300;
-  opacity: .95;
-  margin-top: 100px;
+  opacity: .9;
+  margin-top: 90px;
 }
-
-
 
 #col-checkbox {
   text-align: center;
@@ -147,13 +139,16 @@ body {
 }
 
 #dash-heading{
-  padding-top: 50px;
+  padding-top: 35px;
   text-align: center;
   color: #aca9a9;
 }
 
 .your-events{
-  padding: 50px;
+  padding: 30px;
+}
+.your-events h1{
+  font-size: 25px;
 }
 
 #dash-events-div{
@@ -163,6 +158,28 @@ body {
 
 #dash-events-title{
   font-weight: 650;
+}
+
+#eventname{
+  padding: 20px;
+}
+
+#comments-headline{
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  body {
+    background-image:url("../images/group4.jpg");
+    background-attachment: fixed;
+    background-size:100%;
+  }
+  .your-events h1{
+    font-size: 50px;
+  }
+  #eventname{
+    padding: 50px;
+  }
 }
 
 @media (max-width: 370px) {
