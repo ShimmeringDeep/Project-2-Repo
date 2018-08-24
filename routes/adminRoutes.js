@@ -1,4 +1,6 @@
 var request = require("ajax-request");
+var moment = require("moment")
+
 var db = require("../models");
 module.exports = function (app) {
     app.post("/admin", function (req, res) {
@@ -30,7 +32,7 @@ module.exports = function (app) {
                         var eventObj = {
                             title: event.title,
                             venue: event.venue_name,
-                            date: event.start_time,
+                            date: moment(event.start_time, 'MMMM Do YYYY, h:mm:ss a'),
                             address: event.venue_address,
                             description: event.description,
                             eventfulID: event.id

@@ -11,51 +11,43 @@ module.exports = function (app) {
         });
     });
 
-    app.get("/api/comments", function(req, res) {
+    // app.get("/api/comments", function(req, res) {
 
         
-        var eventID = req.body.eventfulID;
-        var userId = req.body.userId;
+    //     var eventID = req.body.eventfulID;
+    //     var userId = req.body.userId;
       
 
-        db.Comment.findAll({
-            where: {
-               isGoing: true
-            },
-            include: [
-                {
-                    model: db.User,
-                    where: {
-                        id: 1
-                    }
-                },
-                {
-                    model: db.Event,
-                    where: {
-                        id: 1
-                    }
-                }
-            ]
+    //     db.Comment.findAll({
+    //         where: {
+    //            isGoing: true
+    //         },
+    //         include: [
+    //             {
+    //                 model: db.User,
+    //                 where: {
+    //                     id: 1
+    //                 }
+    //             },
+    //             {
+    //                 model: db.Event,
+    //                 where: {
+    //                     id: 1
+    //                 }
+    //             }
+    //         ]
 
-        }).then(function(results) {
-            // console.log(results, res)
-            console.log('cantidad de personas que van a la evento' +results.lenght);
-            res.json(results);
+    //     }).then(function(results) {
+    //         // console.log(results, res)
+    //         console.log('cantidad de personas que van a la evento' +results.lenght);
+    //         res.json(results);
             
 
-            var attending = results.lenght;
-        });
-      });
+    //         var attending = results.lenght;
+    //     });
+    //   });
     
 };
 
 
-
-
-// SELECT users.handle, comments.user_comment
-// FROM comments
-// INNER JOIN users ON comments.userId = users.id
-//  JOIN events ON comments.EventId = events.id
-// WHERE comments.isGoing = true 
-// ORDER BY comments.timestamp DESC;
 

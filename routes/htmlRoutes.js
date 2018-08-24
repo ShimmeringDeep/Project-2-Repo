@@ -128,9 +128,6 @@ module.exports = function (app) {
             }
         ]
     }).then(function(results) {
-        console.log(results.length)
-         var number = 
-          console.log("this is the number of attending " + number);
         var attending = {
           number: results.length,
           comments: results
