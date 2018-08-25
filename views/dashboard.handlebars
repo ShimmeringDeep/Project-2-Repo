@@ -34,9 +34,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">{{date}}</div>
-                <div class="col">{{venue}}</div>
-                <div class="col">{{address}}</div>
+                <div id="dashboard-p" class="col">{{date}}</div>
+                <div id="dashboard-p" class="col">{{venue}}</div>
+                <div id="dashboard-p" class="col">{{address}}</div>
             </div>
             <div class="row">
                 <div class="col"></div>
@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col" id="col-checkbox">
                     <form action="/action_page.php">
-                        <input id="going-checkbox" type="checkbox" name="attending" value="going"> Attending<br>
+                        <input id="going-checkbox" type="checkbox" name="attending" value="going"> <p id="going-checkbox-p">Attending</p><br>
                     </form>
                 </div>
                 <div id="map-icon" class="col">
