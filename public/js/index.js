@@ -117,7 +117,6 @@ console.log("we loaded");
     var newId= id.slice(1,-1);
     
     var newComment = {
-      userId: 1,
       EventId: newId,
       user_comment: $("#comment_user").val().trim(),
       // isGoing: $('#isGoing:checked').val()

@@ -23,10 +23,11 @@ passport.use("local", new LocalStrategy({
           message: 'Incorrect User'
         });
       }
+      user.get()
       console.log(password)
       console.log(user.password)
       if (password){
-        return done(null, user.get());
+        return done(null, user);
       } else {
         console.log('wrong pw')
         return done(null, false, {
@@ -95,10 +96,10 @@ module.exports = function (app) {
 
     console.log(req.body);
     var comment = req.body;
-
+    console.log (req.user)
     // Then add the character to the database using sequelize
     db.Comment.create({
-      UserId: 1,
+      UserId: req.user.id,
       EventId: comment.EventId,
       user_comment: comment.user_comment,
       isGoing: comment.isGoing

@@ -32,7 +32,7 @@ module.exports = function (app) {
                         var eventObj = {
                             title: event.title,
                             venue: event.venue_name,
-                            date: moment(event.start_time, 'MMMM Do YYYY, h:mm:ss a'),
+                            date: moment(event.start_time).format("lll"),
                             address: event.venue_address,
                             description: event.description,
                             eventfulID: event.id
