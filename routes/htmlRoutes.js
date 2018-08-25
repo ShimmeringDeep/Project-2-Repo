@@ -53,25 +53,25 @@ module.exports = function (app) {
       res.json(url)
     });
   });
-  
 
-  app.post("/api/comment/create", function(req, res) {
+
+  app.post("/api/comment/create", function (req, res) {
     // Take the request...
-    
-        console.log(req.body);
+
+    console.log(req.body);
     var comment = req.body;
 
-        // Then add the character to the database using sequelize
+    // Then add the character to the database using sequelize
     db.Comment.create({
       UserId: 1,
       EventId: 1,
       user_comment: comment.comment,
       isGoing: comment.isGoing
-    }).then(function(data){
-      var url ={
-        url : `/events/1`
+    }).then(function (data) {
+      var url = {
+        url: `/events/1`
       }
-      res.json (url)
+      res.json(url)
     });
   });
 
@@ -91,54 +91,54 @@ module.exports = function (app) {
       }
     });
   });
-  
+
   // ----------------------------------------------------------------------- Facebook
   app.get("/auth/facebook",
-  passport.authenticate("facebook"),
+    passport.authenticate("facebook"),
     function (req, res) { });
-    app.get("/auth/facebook/callback",
+  app.get("/auth/facebook/callback",
     passport.authenticate("facebook", { failureRedirect: "/" }),
     function (req, res) {
       res.redirect("/account");
     });
-    
-    // ----------------------------------------------------------------------- Twitter
-    app.get("/auth/twitter",
+
+  // ----------------------------------------------------------------------- Twitter
+  app.get("/auth/twitter",
     passport.authenticate("twitter"),
     function (req, res) { });
-    app.get("/auth/twitter/callback",
+  app.get("/auth/twitter/callback",
     passport.authenticate("twitter", { failureRedirect: "/" }),
     function (req, res) {
       res.redirect("/account");
     });
-    
-    // ----------------------------------------------------------------------- Github
-    app.get("/auth/github",
+
+  // ----------------------------------------------------------------------- Github
+  app.get("/auth/github",
     passport.authenticate("github"),
     function (req, res) { });
-    app.get("/auth/github/callback",
+  app.get("/auth/github/callback",
     passport.authenticate("github", { failureRedirect: "/" }),
     function (req, res) {
       res.redirect("/account");
     });
-    
-    // ----------------------------------------------------------------------- Google  
-    app.get("/auth/google",
+
+  // ----------------------------------------------------------------------- Google  
+  app.get("/auth/google",
     passport.authenticate("google", {
       scope: [
         "https://www.googleapis.com/auth/plus.login",
         "https://www.googleapis.com/auth/plus.profile.emails.read"
       ]
     }
-  ));
+    ));
   app.get("/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/" }),
+    passport.authenticate("google", { failureRedirect: "/" }),
     function (req, res) {
       res.redirect("/account");
     });
 
-    // ----------------------------------------------------------------------- Account
-    app.get("/account", ensureAuthenticated, function (req, res) {
+  // ----------------------------------------------------------------------- Account
+  app.get("/account", ensureAuthenticated, function (req, res) {
     User.findById(req.session.passport.user, function (err, user) {
       if (err) {
         console.log(err);  // handle errors
@@ -147,13 +147,13 @@ module.exports = function (app) {
       }
     });
   });
-  
+
   // ----------------------------------------------------------------------- Logout
   app.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/");
   });
-  
+
   // Load single event page and pass in an event by id
   app.get("/events/:id", function (req, res) {
     db.Event.findOne({ where: { id: req.params.id } }).then(function (Event) {
@@ -171,13 +171,14 @@ module.exports = function (app) {
           }
         ]
       }).then(function (results) {
-        
+
         var attending = {
           number: results.length,
           comments: results,
-          url: "/events/:"+results.eventId
+          url: "/events/:" + results.id
         }
-        res.json(results.eventId)
+        console.log("url dentro de attending "+attending.url);
+        //  res.json(attending);
 
         res.render("event", {  //again check with Enrique 
           event: Event,

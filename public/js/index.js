@@ -1,9 +1,9 @@
-$( document ).ready(function() {
+$(document).ready(function () {
 
   $("#signup-submit").on("click", function (event) {
 
     event.preventDefault();
-  
+
     var newUser = {
       oauthID: 1.1,
       name: $("#name").val().trim(),
@@ -19,7 +19,7 @@ $( document ).ready(function() {
       .then(function (data) {
         // log the data we found
         // console.log(data);
-  
+
         window.location = data.url;
         // tell the user we're adding a character with an alert window
       });
@@ -27,45 +27,54 @@ $( document ).ready(function() {
 
 
   // This is for POST Method
-  $(".dash-events-class").on("click", function(event) {
+  $(".dash-events-class").on("click", function (event) {
     event.preventDefault();
-    
+    var id = $(this).attr("data-eventId");
+    // console.log("id is"+id);
+    var newId= id.slice(1,-1);
+    console.log("newid "+newId);
 
-    
+    var href = "/events/"+newId;
+
+
+
     // send an AJAX POST-request with jQuery
-    $.get("/events/:id")
-    // on success, run this callback
-    .then(function(data) {
+    $.get("/events/"+newId)
+      // on success, run this callback
+      .then(function (data) {
 
-      console.log(data)
-      console.log( "Event that comes when i click on event div" + data);
-      // log the data we found
-      // console.log(data);
+        console.log(data)
+        console.log("Event that comes when i click on event div" + data);
+        // log the data we found
+        // console.log(data);
 
-      window.location = data.attending.url;
-      // console.log(data.url);
-      // tell the user we're adding a character with an alert window
-    });
+        window.location.href = href;
+        // console.log(data.url);
+        // tell the user we're adding a character with an alert window
+      });
   });
-  
-  
+
+
+
+
+
   $("#login-submit").on("click", function (event) {
     event.preventDefault();
-  
+
     var user = {
       email: $("#login-email").val().trim(),
       password: $("#login-password").val().trim(),
     };
     console.log(user);
-  
+
   });
-  
-  
+
+
   $("body").on("click", "#comment-submit", function (event) {
-   event.preventDefault();
-  
+    event.preventDefault();
+
     console.log("dentro del click del boton submit del evento");
-  
+
     var newComment = {
       userId: 1,
       eventId: 1,
@@ -82,21 +91,21 @@ $( document ).ready(function() {
 
       });
   });
-  
+
 });
 
 
 
-  var user = {
-    email: $("#login-email").val().trim(),
-    password: $("#login-password").val().trim(),
-  };
+var user = {
+  email: $("#login-email").val().trim(),
+  password: $("#login-password").val().trim(),
+};
 console.log(user);
 
 
 
-  $("#comment-submit").on("click", function(event) {
-    event.preventDefault();
+$("#comment-submit").on("click", function (event) {
+  event.preventDefault();
 
   var newComment = {
     userId: 1,
@@ -105,15 +114,15 @@ console.log(user);
     isGoing: $('#isGoing:checked').val()
 
   };
-console.log(newUser);
+  console.log(newUser);
   // send an AJAX POST-request with jQuery
   $.post("/dashboard", newUser)
     // on success, run this callback
-    .then(function(data) {
+    .then(function (data) {
       // log the data we found
       // console.log(data);
 
       window.location = data.url;
       // tell the user we're adding a character with an alert window
     });
-  });
+});
