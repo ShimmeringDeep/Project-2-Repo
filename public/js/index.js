@@ -49,28 +49,6 @@ $( document ).ready(function() {
   });
   
   
-  // // This is for POST Method
-  // $("#dash-events-div").on("click", function(event) {
-  //   event.preventDefault();
-  
-  
-  
-  //   // send an AJAX POST-request with jQuery
-  //   $.get("/events/:id")
-  //   // on success, run this callback
-  //   .then(function(data) {
-  
-  //     console.log(data)
-  //     console.log( "evento que viene del click en div event" + data);
-  //     // log the data we found
-  //     // console.log(data);
-  
-  //     window.location = data.attending.url;
-  //     // console.log(data.url);
-  //     // tell the user we're adding a character with an alert window
-  //   });
-  // });
-  
   $("#login-submit").on("click", function (event) {
     event.preventDefault();
   
