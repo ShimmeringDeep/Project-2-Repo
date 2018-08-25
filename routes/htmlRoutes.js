@@ -64,8 +64,8 @@ module.exports = function (app) {
     // Then add the character to the database using sequelize
     db.Comment.create({
       UserId: 1,
-      EventId: req.params.id,
-      user_comment: comment.comment,
+      EventId: comment.EventId,
+      user_comment: comment.user_comment,
       isGoing: comment.isGoing
     }).then(function (data) {
       var url = {
@@ -175,7 +175,8 @@ module.exports = function (app) {
         var attending = {
           number: results.length,
           comments: results,
-          url: "/events/:" + results.id
+          url: "/events/" + req.params.id,
+          eventId: req.params.id
         }
         console.log("url dentro de attending "+attending.url);
         //  res.json(attending);
