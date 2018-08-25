@@ -92,14 +92,16 @@ module.exports = function (app) {
 
   app.post("/api/comment/create", function (req, res) {
     // Take the request...
+
     console.log(req.body);
-    var comment = req.body.comment;
+    var comment = req.body;
+
     // Then add the character to the database using sequelize
     db.Comment.create({
       UserId: 1,
-      EventId: 1,
-      user_comment: comment,
-      isGoing: true
+      EventId: comment.EventId,
+      user_comment: comment.user_comment,
+      isGoing: comment.isGoing
     }).then(function (data) {
       var url = {
         url: `/events/1`
@@ -131,10 +133,13 @@ module.exports = function (app) {
         var attending = {
           number: results.length,
           comments: results,
-          // url : `/events/${results.eventId}`
+          url: "/events/" + req.params.id,
+          eventId: req.params.id
         }
+        console.log("url dentro de attending "+attending.url);
+        //  res.json(attending);
 
-        res.render("event", { //again check with Enrique 
+        res.render("event", {  //again check with Enrique 
           event: Event,
           attending: attending
         });
