@@ -49,9 +49,9 @@ module.exports = function (sequelize, DataTypes) {
     var salt = bcrypt.genSalt(SALT_WORK_FACTOR, function (_, salt) {
       return salt;
     });
-    console.log("please please please :" + user.password);
+
     user.password = bcrypt.hashSync(user.password, salt);
-    console.log("please please please :" + user.password);
+
   });
 
   return User;
