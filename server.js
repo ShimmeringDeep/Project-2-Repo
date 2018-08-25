@@ -3,22 +3,18 @@ require("dotenv").config();
 var fs = require("fs");
 var express = require("express");
 var bodyParser = require("body-parser");
+var bcrypt = require("bcrypt-nodejs");
 var path = require("path");
-// var routes = require("./routes");
-var config = require("./oauth.js");
+var http = require("http")
 var passport = require("passport");
-var fbAuth = require("./authentication.js");
-var TwitterStrategy = require("passport-twitter").Strategy;
-var GithubStrategy = require("passport-github2").Strategy;
-var GoogleStrategy = require("passport-google-oauth2").Strategy;
 var exphbs = require("express-handlebars");
-var helpers = require("handlebars-helper-css"); 
-var logger = require("express-logger");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
-var multer = require("multer");
 var session = require("express-session");
 var methodOverride = require("method-override");
+// var flash = ("connect-flash");
+
+require("./config/passport");
 
 var db = require("./models");
 // ------------------------------------------------------------------------------------- </dependencies>
@@ -28,14 +24,26 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 //Authentication
-//app.use(logger());
+// app.use(flash());
 app.use(cookieParser());
 app.use(methodOverride());
 app.use(session({ secret: "my_precious" }));
 app.use(passport.initialize());
 app.use(passport.session());
-//app.use(app.router);
 
+//Serialize Sessions
+passport.serializeUser(function(user, done){
+    done(null, user);
+ });
+ 
+ //Deserialize Session
+ passport.deserializeUser(function(user, done){
+    db.User.find({where:{id: user.id}}).then(function(user){
+        done(null, user.get());
+    }).error(function(err){
+        done(err,null);
+    });
+ });
     // Middleware
 app.use(bodyParser.urlencoded({
     extended: false
@@ -55,57 +63,10 @@ app.set("view engine", "handlebars");
 
 // ------------------------------------------------------------------------------------- </config>
 
-// ------------------------------------------------------------------------------------- <serialize and deserialize>
-passport.serializeUser(function(user, done) {
-    console.log("serializeUser: " + user._id);
-    done(null, user._id);
-});
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user){
-      console.log(user);
-        if(!err) done(null, user);
-        else done(err, null);
-      });
-});
-// ------------------------------------------------------------------------------------- </serialize and deserialize>
-
 // ------------------------------------------------------------------------------------- <routes>
-// app.get("/api/comments", function(req, res) {
-
-        
-//   var eventID = req.body.eventfulID;
-//   var userId = req.body.userId;
-
-//   db.Comment.findAll({
-//       where: {
-//          isGoing: true
-//       },
-//       include: [
-//           {
-//               model: db.User,
-//             //   where: {
-//             //       id: 1
-//             //   }
-//           },
-//           {
-//               model: db.Event,
-//             //   where: {
-//             //       id: 1
-//             //   }
-//           }
-//       ]
-//   }).then(function(results) {
-//       console.log(results, res)
-//       res.json(results);
-//   });
-// });
-
-// ----------------------------------------------------------------------- User
-
-// ----------------------------------------------------------------------- Admin
 require("./routes/adminRoutes.js")(app);
 require("./routes/htmlRoutes.js")(app);
-//-------------------------------------------------------------------------Comments
+
 
 
 

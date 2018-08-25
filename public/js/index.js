@@ -5,26 +5,25 @@ console.log("we loaded");
     event.preventDefault();
 
     var newUser = {
-      oauthID: 1.1,
-      name: $("#name").val().trim(),
       email: $("#email").val().trim(),
       password: $("#password").val().trim(),
       handle: $("#handle").val().trim(),
-      address: $("#address").val().trim()
     };
-    console.log(newUser);
     // send an AJAX POST-request with jQuery
-    $.post("/dashboard", newUser)
+    $.post("/sign-up", newUser)
       // on success, run this callback
       .then(function (data) {
-        // log the data we found
-        // console.log(data);
 
         window.location = data.url;
-        // tell the user we're adding a character with an alert window
+
       });
   });
-
+  
+  $(".sign-out").on("click", function(event){
+    window.location = "/logout"
+  })
+  
+  
 // 30.1658° N, 95.4613° W
 // var map;
 // function initMap() {
@@ -40,8 +39,6 @@ console.log("we loaded");
 //   });
 // }
 // initMap();
-
-
 
   // This is for POST Method
   $(".dash-events-class").on("click", function (event) {
@@ -71,10 +68,6 @@ console.log("we loaded");
       });
   });
 
-
-
-
-
   $("#login-submit").on("click", function (event) {
     event.preventDefault();
 
@@ -84,6 +77,9 @@ console.log("we loaded");
     };
     console.log(user);
 
+    $.post("/login", user).then(function(data){
+      window.location = "/dashboard";
+    })
   });
 
   // // This is for POST Method
@@ -121,7 +117,6 @@ console.log("we loaded");
     var newId= id.slice(1,-1);
     
     var newComment = {
-      userId: 1,
       EventId: newId,
       user_comment: $("#comment_user").val().trim(),
       // isGoing: $('#isGoing:checked').val()

@@ -1,69 +1,105 @@
 var db = require("../models");
+var application = require("./application");
+var passport = require("passport");
+var passport = require("passport");
+var LocalStrategy = require("passport-local").Strategy;
+var db = require("../models");
+var bcrypt = require("bcrypt-nodejs")
+
+
+
+
+//for Authentication purposes
+passport.use("local", new LocalStrategy({
+    usernameField: 'email',
+  },
+  function (username, password, done) {
+    db.User.findOne({
+      username: username
+    }).then((user) => {
+      if (!user) {
+        console.log('wrong user');
+        return done(null, false, {
+          message: 'Incorrect User'
+        });
+      }
+      user.get()
+      console.log(password)
+      console.log(user.password)
+      if (password){
+        return done(null, user);
+      } else {
+        console.log('wrong pw')
+        return done(null, false, {
+          message: 'Invalid password'
+        });
+      }
+    })
+  }));
 
 module.exports = function (app) {
-
-  // Required to use depreciate ensureAuthenticated method
-  var passport = require("passport");
-  var fbAuth = require("../authentication.js");
-  var TwitterStrategy = require("passport-twitter").Strategy;
-  var GithubStrategy = require("passport-github2").Strategy;
-  var GoogleStrategy = require("passport-google-oauth2").Strategy;
-  function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated())
-      return next();
-    else
-      res.redirect("/login")
-  }
-  // Load when on user dashboard <<plz help>>
 
   // ----------------------------------------------------------------------- Home  
   app.get("/", function (req, res) {
     res.render("index");
   })
 
-  // ----------------------------------------------------------------------- Dashboard  
-  app.get("/dashboard", function (req, res) {
+  app.post("/sign-up", function (req, res) {
+    // Take the request...
+    var user = req.body;
+    db.User.findOne({
+      where: {
+        email: user.email
+      }
+    }).then(function (user1) {
+      if (!user1) {
+        db.User.create({
+          email: user.email,
+          password: user.password,
+          handle: user.handle,
+        }).then(function (user) {
+          var url = {
+            url: "/"
+          }
+          res.json(url)
+        });
+      } else {
+        res.redirect('/404')
+      };
+    });
+  });
 
+  app.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect('/');
+  });
+
+  app.post("/login",
+    passport.authenticate("local", {
+      successRedirect: "/dashboard",
+      failureRedirect: "/failed",
+    }));
+
+  // ----------------------------------------------------------------------- Dashboard  
+  app.get("/dashboard", application.isAuthenticated, function (req, res) {
     //when on "/" database using the event table will find all events then render on user dashboard
     db.Event.findAll({}).then(function (Events) {
       console.log(Events);
-      res.render("dashboard", {  //check with Enrique on the name of handlebars template for dashboard
-
+      res.render("dashboard", { //check with Enrique on the name of handlebars template for dashboard
         events: Events
-
       });
     });
   });
-
-  app.post("/dashboard", function (req, res) {
-    // Take the request...
-    var user = req.body;
-
-    // Then add the character to the database using sequelize
-    db.User.create({
-      name: user.name,
-      email: user.email,
-      password: user.password,
-      handle: user.handle,
-      address: user.address
-    }).then(function (user) {
-      var url = {
-        url: "/dashboard"
-      }
-      res.json(url)
-    });
-  });
-
 
   app.post("/api/comment/create", function (req, res) {
     // Take the request...
 
     console.log(req.body);
     var comment = req.body;
-
+    console.log (req.user)
     // Then add the character to the database using sequelize
     db.Comment.create({
-      UserId: 1,
+      UserId: req.user.id,
       EventId: comment.EventId,
       user_comment: comment.user_comment,
       isGoing: comment.isGoing
@@ -75,92 +111,15 @@ module.exports = function (app) {
     });
   });
 
-
-
-
-  // ----------------------------------------------------------------------- Ping
-  //app.get("/ping", routes.ping);
-
-  // ----------------------------------------------------------------------- Account
-  app.get("/account", ensureAuthenticated, function (req, res) {
-    User.findById(req.session.passport.user, function (err, user) {
-      if (err) {
-        console.log(err);  // handle errors
-      } else {
-        res.render("account", { user: user });
-      }
-    });
-  });
-
-  // ----------------------------------------------------------------------- Facebook
-  app.get("/auth/facebook",
-    passport.authenticate("facebook"),
-    function (req, res) { });
-  app.get("/auth/facebook/callback",
-    passport.authenticate("facebook", { failureRedirect: "/" }),
-    function (req, res) {
-      res.redirect("/account");
-    });
-
-  // ----------------------------------------------------------------------- Twitter
-  app.get("/auth/twitter",
-    passport.authenticate("twitter"),
-    function (req, res) { });
-  app.get("/auth/twitter/callback",
-    passport.authenticate("twitter", { failureRedirect: "/" }),
-    function (req, res) {
-      res.redirect("/account");
-    });
-
-  // ----------------------------------------------------------------------- Github
-  app.get("/auth/github",
-    passport.authenticate("github"),
-    function (req, res) { });
-  app.get("/auth/github/callback",
-    passport.authenticate("github", { failureRedirect: "/" }),
-    function (req, res) {
-      res.redirect("/account");
-    });
-
-  // ----------------------------------------------------------------------- Google  
-  app.get("/auth/google",
-    passport.authenticate("google", {
-      scope: [
-        "https://www.googleapis.com/auth/plus.login",
-        "https://www.googleapis.com/auth/plus.profile.emails.read"
-      ]
-    }
-    ));
-  app.get("/auth/google/callback",
-    passport.authenticate("google", { failureRedirect: "/" }),
-    function (req, res) {
-      res.redirect("/account");
-    });
-
-  // ----------------------------------------------------------------------- Account
-  app.get("/account", ensureAuthenticated, function (req, res) {
-    User.findById(req.session.passport.user, function (err, user) {
-      if (err) {
-        console.log(err);  // handle errors
-      } else {
-        res.render("account", { user: user });
-      }
-    });
-  });
-
-  // ----------------------------------------------------------------------- Logout
-  app.get("/logout", function (req, res) {
-    req.logout();
-    res.redirect("/");
-  });
-
   // Load single event page and pass in an event by id
   app.get("/events/:id", function (req, res) {
-    db.Event.findOne({ where: { id: req.params.id } }).then(function (Event) {
+    db.Event.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (Event) {
       db.Comment.findAll({
-        include: [
-
-          {
+        include: [{
             model: db.User,
           },
           {
@@ -185,27 +144,12 @@ module.exports = function (app) {
           event: Event,
           attending: attending
         });
+        // res.json(attending);
       });
     });
   });
-
-
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
     res.render("404");
   });
 };
-
-
-      // //llamada al evento segun el id
-      // app.get("/events/:id", function(req, res) {
-      //   // Take the request...
-      //   var id = req.body
-
-      // }).then(function(event){
-      //     var url ={
-      //       url : `/events/${event.id}`
-      //     }
-      //     res.json (url)
-      //   });
-
