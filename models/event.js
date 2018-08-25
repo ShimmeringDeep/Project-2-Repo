@@ -27,11 +27,6 @@ module.exports = function (sequelize, DataTypes) {
             defaultValue: DataTypes.NOW // this line can give some problems
             // sequelize.fn("NOW") possible solution if line up gives problems
         },
-        description: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            len: [1, 200]
-        },
         eventfulID: {
             type: DataTypes.STRING,
             allowNull: false

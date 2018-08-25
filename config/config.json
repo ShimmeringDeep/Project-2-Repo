@@ -3,19 +3,21 @@
     "username": "root",
     "password": "root",
     "database": "intheband",
-    "host": "localhost",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "testdb",
-    "host": "localhost",
-    "dialect": "mysql",
-    "logging": false
+    "password": "root",
+    "database": "intheband",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
   },
   "production": {
-    "use_env_variable": "JAWSDB_URL",
+    "username": "intheband",
+    "password": "USTTp6UpwIeEvCIJ",
+    "database": "intheband",
+    "host": "www.clutch.net",
     "dialect": "mysql"
   }
 }

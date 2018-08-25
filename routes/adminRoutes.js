@@ -1,4 +1,6 @@
 var request = require("ajax-request");
+var moment = require("moment")
+
 var db = require("../models");
 module.exports = function (app) {
     app.post("/admin", function (req, res) {
@@ -15,7 +17,7 @@ module.exports = function (app) {
                 if (err) throw err;
                 body = JSON.parse(body);
                 var events = body.events.event; //grabs the location in the result where the events from our query are stored
-                console.log(events);
+                // console.log(events);
 
                 db.Event.findAll({}).then(function (result) {
                     // var checkArr = [];
@@ -30,7 +32,7 @@ module.exports = function (app) {
                         var eventObj = {
                             title: event.title,
                             venue: event.venue_name,
-                            date: event.start_time,
+                            date: moment(event.start_time, 'MMMM Do YYYY, h:mm:ss a'),
                             address: event.venue_address,
                             description: event.description,
                             eventfulID: event.id
@@ -41,7 +43,7 @@ module.exports = function (app) {
                         // }
                     }
                     // });
-                    console.log(bulkArr)
+                    // console.log(bulkArr)
                     db.Event.bulkCreate(bulkArr).then(function () {
                         res.end();
                     })
@@ -49,7 +51,7 @@ module.exports = function (app) {
             });
     });
 
-    app.put("admin/", function (req, res) {
+    app.put("/admin/", function (req, res) {
         db.Event.update(req.body, {
             where: {
                 id: req.body.id
@@ -59,7 +61,7 @@ module.exports = function (app) {
         })
     });
 
-    app.delete("admin/:id", function (req, res) {
+    app.delete("/admin/:id", function (req, res) {
         db.Event.destroy({
             where: {
                 id: req.params.id

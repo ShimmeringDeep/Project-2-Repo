@@ -1,55 +1,47 @@
-module.exports = function (sequelize, DataTypes) {
-    var User = sequelize.define("User", {
-      oauthID: {
-        type: DataTypes.FLOAT,
-        allowNull: false
-      },
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: [1, 120]
-        }
-      },
-      created: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW
-      },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: [1, 120]
-        }
-      },
-      handle: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: [1, 120]
-        }
-      },
-      address: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: [1, 120]
-        }
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        len: [1, 200]
-      }
+//password encryption occurs before its logged to the database
+var bcrypt = require('bcrypt-nodejs')
 
-    });
-  
-    User.associate = function (models) {
-      User.hasMany(models.Comment, {
-        onDelete: "cascade"
-      });
+module.exports = function(sequelize, DataTypes) {
+
+    var db = require("../models");
+    var User = sequelize.define("User", {
+        username: {type: DataTypes.STRING, unique: true, allowNull: false, validate: {notEmpty: true}},
+        password: {type: DataTypes.STRING, allowNull: false, validate: {notEmpty: true}},
+        first_name: {type: DataTypes.STRING},
+        last_name: {type: DataTypes.STRING}
+    },	{
+		dialect: 'mysql'
+	});
+    User.validPassword = function(password, passwd, done, user){
+        bcrypt.compare(password, passwd, function(err, isMatch){
+            if (err) console.log(err)
+            if (isMatch) {
+                return done(null, user)
+            } else {
+                return done(null, false)
+            }
+        })
     };
-  
-    return User;
-  };
+/*
+    User.associate = function (models) {
+        User.hasMany(models.Comment, {
+          onDelete: "cascade"
+        });
+    };
+*/
+    //encryption occurs here before password logged to database
+    User.hook('beforeCreate', function(user, fn){
+        var salt = bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
+            return salt
+        });
+        bcrypt.hash(user.password, salt, null, function(err, hash){
+            var fn = function fn() {};
+            if(err) return err;
+            console.log(user.password);
+            User.update({password: hash}, {where: {username:user.username}})
+            console.log(user.password);
+            return fn(null, user)
+        });
+    });
+      return User;
+};
