@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+console.log("we loaded");
   $("#signup-submit").on("click", function (event) {
 
     event.preventDefault();
@@ -24,6 +24,23 @@ $(document).ready(function () {
         // tell the user we're adding a character with an alert window
       });
   });
+
+// 30.1658° N, 95.4613° W
+var map;
+function initMap() {
+  var myLatLng = {lat: 30.1614351, lng: -95.4643383};
+  map = new google.maps.Map(document.getElementById('mapAddress'), {
+    center: myLatLng,
+    zoom: 8
+  });
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'your event is here!'
+  });
+}
+initMap();
+
 
 
   // This is for POST Method
