@@ -1,8 +1,8 @@
-$( document ).ready(function() {
+$(document).ready(function () {
 
   $("#signup-submit").on("click", function (event) {
     event.preventDefault();
-  
+
     var newUser = {
       oauthID: 1.1,
       name: $("#name").val().trim(),
@@ -18,30 +18,54 @@ $( document ).ready(function() {
       .then(function (data) {
         // log the data we found
         // console.log(data);
-  
+
         window.location = data.url;
         // tell the user we're adding a character with an alert window
       });
   });
-  
-  
+
+
   $("#login-submit").on("click", function (event) {
     event.preventDefault();
-  
+
     var user = {
       email: $("#login-email").val().trim(),
       password: $("#login-password").val().trim(),
     };
     console.log(user);
-  
+
   });
-  
-  
+
+  // This is for POST Method
+  $(".dash-events-class").on("click", function (event) {
+    event.preventDefault();
+
+    var id = $(this).attr("eventId");
+
+    console.log("id dentro del click "+id);
+
+    // send an AJAX POST-request with jQuery
+    $.get("/events/:id")
+      // on success, run this callback
+      .then(function (data) {
+
+        console.log(data)
+        console.log("Event that comes when i click on event div" + data);
+        // log the data we found
+        // console.log(data);
+
+        window.location = data.attending.url;
+        // console.log(data.url);
+        // tell the user we're adding a character with an alert window
+      });
+  });
+
+
   $("body").on("click", "#comment-submit", function (event) {
-   event.preventDefault();
-  
+    event.preventDefault();
+
     console.log("dentro del click del boton submit del evento");
-  
+
     var newComment = {
       userId: 1,
       eventId: 1,
@@ -58,7 +82,7 @@ $( document ).ready(function() {
 
       });
   });
-  
+
 });
 
 

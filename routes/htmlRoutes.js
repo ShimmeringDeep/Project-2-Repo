@@ -64,7 +64,7 @@ module.exports = function (app) {
         // Then add the character to the database using sequelize
     db.Comment.create({
       UserId: 1,
-      EventId: 1,
+      EventId: req.params.id,
       user_comment: comment.comment,
       isGoing: comment.isGoing
     }).then(function(data){
