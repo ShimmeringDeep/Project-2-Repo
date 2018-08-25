@@ -89,7 +89,7 @@ body {
   background-color: white;
   color: black;
   font-weight: 300;
-  opacity: .9;
+  opacity: .92;
   margin-top: 90px;
 }
 
@@ -101,6 +101,15 @@ body {
   background-color:#b70379;
   color:rgb(255,255,255);
 }
+#login-clicky, #signup-clicky{
+  background-color: #a34381;
+  color: white;
+  font-weight: 600;
+}
+#login-clicky:hover, #signup-clicky:hover{
+  background-color: #b70379;
+}
+
 #login-btn:hover {
   background-color:#a34381;
   color:rgb(255,255,255);
@@ -187,6 +196,19 @@ body {
 #mapAddress{
   height: 300px;
   width: 100%;
+  margin-bottom: 12px;
+}
+
+#event-page-p{
+  font-size: 20px;
+  font-family: montserrat;
+  font-weight: 400;
+}
+
+#going-checkbox-p{
+  font-size: 20px;
+  font-family: montserrat;
+  font-weight: 400;
 }
 
 @media (min-width: 768px) {
@@ -200,6 +222,14 @@ body {
   }
   #eventname{
     padding: 50px;
+  }
+  #dashboard-p{
+    font-size: 20px;
+    font-family: montserrat;
+    font-weight: 400;
+  }
+  #event-page-p{
+    padding-top: 30px;
   }
 }
 

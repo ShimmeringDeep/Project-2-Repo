@@ -33,19 +33,19 @@
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-6">
-              <p>Venue{{event.venue}}</p>
+              <p id="event-page-p">Venue: {{event.venue}}</p>
             </div>
             <div class="col-md-6">
-              <p>Address{{event.address}}</p>
+              <p id="event-page-p">Address: {{event.address}}</p>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
-              <p>Date{{event.date}}</p>
+              <p id="event-page-p">Date: {{event.date}}</p>
             </div>
             <div class="col-md-6">
-              <form action="/action_page.php">
-                <input id="going-checkbox" type="checkbox" name="attending" value="true"> Attending
+              <form id="going-checkbox-form" action="/action_page.php">
+                <input id="going-checkbox" type="checkbox" name="attending" value="true"> <p id="going-checkbox-p">Attending</p>
                 <br>
               </form>
             </div>
