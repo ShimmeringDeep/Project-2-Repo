@@ -23,36 +23,25 @@ module.exports = function (sequelize, DataTypes) {
         len: [1, 120]
       }
     }
-  }, {
-    classMethods: {
-      validPassword: function (password, passwd, done, user) {
-        bcrypt.compare(password, passwd, function (err, isMatch) {
-          console.log("fail")
-          if (err) console.log(err);
-          if (isMatch) {
-            return done(null, user);
-          } else {
-            return done(null, false);
-          };
-        })
-      }
-    }
   });
+
+  // User.associate =   function validPassword (password, passwd, done, user) {
+    // bcrypt.compare(password, passwd, function (err, isMatch) {
+    //   console.log("fail")
+    //   if (err) console.log(err);
+    //   if (isMatch) {
+    //     return done(null, user);
+    //   } else {
+    //     return done(null, false);
+    //   };
+    // });
+  // };
 
   User.associate = function (models) {
     User.hasMany(models.Comment, {
       onDelete: "cascade"
     });
   };
-
-  User.beforeCreate(function (user, options) {
-    var salt = bcrypt.genSalt(SALT_WORK_FACTOR, function (_, salt) {
-      return salt;
-    });
-
-    user.password = bcrypt.hashSync(user.password, salt);
-
-  });
 
   return User;
 };

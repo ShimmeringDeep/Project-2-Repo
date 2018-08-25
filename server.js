@@ -12,10 +12,9 @@ var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var methodOverride = require("method-override");
+// var flash = ("connect-flash");
 
 require("./config/passport");
-
-SALT_WORK_FACTOR = 12;
 
 var db = require("./models");
 // ------------------------------------------------------------------------------------- </dependencies>
@@ -25,7 +24,7 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 //Authentication
-
+// app.use(flash());
 app.use(cookieParser());
 app.use(methodOverride());
 app.use(session({ secret: "my_precious" }));
@@ -35,16 +34,16 @@ app.use(passport.session());
 //Serialize Sessions
 passport.serializeUser(function(user, done){
     done(null, user);
-});
-
-//Deserialize Session
-passport.deserializeUser(function(user, done){
-    db.User.find({where:{id: user.id}}).success(function(user){
-        done(null, user);
+ });
+ 
+ //Deserialize Session
+ passport.deserializeUser(function(user, done){
+    db.User.find({where:{id: user.id}}).then(function(user){
+        done(null, user.get());
     }).error(function(err){
         done(err,null);
     });
-});
+ });
     // Middleware
 app.use(bodyParser.urlencoded({
     extended: false
@@ -65,7 +64,6 @@ app.set("view engine", "handlebars");
 // ------------------------------------------------------------------------------------- </config>
 
 // ------------------------------------------------------------------------------------- <routes>
-
 require("./routes/adminRoutes.js")(app);
 require("./routes/htmlRoutes.js")(app);
 
@@ -81,7 +79,7 @@ var syncOptions = {
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
-    syncOptions.force = true;
+    // syncOptions.force = true;
 }
 
 // Starting the server, syncing our models ------------------------------------/

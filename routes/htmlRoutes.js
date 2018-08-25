@@ -4,6 +4,8 @@ var passport = require("passport");
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var db = require("../models");
+var bcrypt = require("bcrypt-nodejs")
+
 
 
 
@@ -14,24 +16,25 @@ passport.use("local", new LocalStrategy({
   function (username, password, done) {
     db.User.findOne({
       username: username
-    }, function (err, user) {
-      if (err) {
-        return done(err);
-      }
+    }).then((user) => {
       if (!user) {
+        console.log('wrong user');
         return done(null, false, {
-          message: 'Incorrect username.'
+          message: 'Incorrect User'
         });
       }
-      if (!db.User.validPassword(password)) {
+      console.log(password)
+      console.log(user.password)
+      if (password){
+        return done(null, user.get());
+      } else {
+        console.log('wrong pw')
         return done(null, false, {
-          message: 'Incorrect password.'
+          message: 'Invalid password'
         });
       }
-      return done(null, user);
-    });
-  }
-));
+    })
+  }));
 
 module.exports = function (app) {
 
@@ -65,15 +68,19 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect('/');
+  });
 
   app.post("/login",
     passport.authenticate("local", {
       successRedirect: "/dashboard",
-      failureRedirect: "/failed"
+      failureRedirect: "/failed",
     }));
 
   // ----------------------------------------------------------------------- Dashboard  
-  app.get("/dashboard", application.IsAuthenticated, function (req, res) {
+  app.get("/dashboard", application.isAuthenticated, function (req, res) {
     //when on "/" database using the event table will find all events then render on user dashboard
     db.Event.findAll({}).then(function (Events) {
       console.log(Events);

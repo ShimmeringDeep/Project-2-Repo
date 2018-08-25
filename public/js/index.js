@@ -18,7 +18,9 @@ $( document ).ready(function() {
       });
   });
   
-  
+  $(".sign-out").on("click", function(event){
+    window.location = "/logout"
+  })
   // // This is for POST Method
   // $("#dash-events-div").on("click", function(event) {
   //   event.preventDefault();
@@ -50,7 +52,7 @@ $( document ).ready(function() {
     console.log(user);
 
     $.post("/login", user).then(function(data){
-      console.log(data);
+      window.location = "/dashboard";
     })
   });
   
