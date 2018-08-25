@@ -154,38 +154,7 @@ module.exports = function (app) {
     res.redirect("/");
   });
   
-  // Load single event page and pass in an event by id
-  app.get("/events/:id", function (req, res) {
-    db.Event.findOne({ where: { id: req.params.id } }).then(function (Event) {
-      db.Comment.findAll({
-        include: [
-
-          {
-            model: db.User,
-          },
-          {
-            model: db.Event,
-            where: {
-              id: req.params.id
-            }
-          }
-        ]
-      }).then(function (results) {
-        
-        var attending = {
-          number: results.length,
-          comments: results,
-          url: "/events/:"+results.eventId
-        }
-        res.json(results.eventId)
-
-        res.render("event", {  //again check with Enrique 
-          event: Event,
-          attending: attending
-        });
-      });
-    });
-  });
+  
 
 
   // Render 404 page for any unmatched routes
