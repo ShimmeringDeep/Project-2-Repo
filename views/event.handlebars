@@ -21,7 +21,7 @@
 <div class="container" id="dash-container">
   <section>
     <div class="your-events">
-      <h1 id="eventname">Event Name{{event.title}}</h1>
+      <h1 id="eventname">{{event.title}}</h1>
       <div class="row">
         <div class="col">
           <p>Date{{event.date}}</p>
@@ -58,11 +58,11 @@
 
       <div class="row" id="comments-div">
         {{#each attending.comments}}
-        <div class="col-md-12">
+        <div class="col-md-12 comment-handle">
           <h1>
             <i class="fa fa-user-circle-o" id="band-icon" style="font-size:22px;"></i> {{User.handle}}: </h1>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 actual-comment">
           <h2> {{user_comment}} </h2>
         </div>
         {{/each}}

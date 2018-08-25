@@ -162,10 +162,13 @@ body {
 
 #eventname{
   padding: 20px;
+  text-align: center;
 }
 
 #comments-headline{
-  text-align: center;
+  text-align: left;
+  font-size: 20px;
+  padding-left: 10px;
 }
 
 #comments-div{
@@ -190,6 +193,16 @@ body {
   #dash-container {
     margin:0px 100px;
   }
+}
+
+.comment-handle h1{
+  font-size: 15px;
+  padding-left: 10px;
+}
+.actual-comment h2{
+  font-size: 15px;
+  padding-left: 30px;
+  font-family: monserrat;
 }
 
 
