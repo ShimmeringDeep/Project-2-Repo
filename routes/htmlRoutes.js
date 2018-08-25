@@ -59,14 +59,14 @@ module.exports = function (app) {
     // Take the request...
     
         console.log(req.body);
-    var comment = req.body.comment;
+    var comment = req.body;
 
         // Then add the character to the database using sequelize
     db.Comment.create({
       UserId: 1,
       EventId: 1,
-      user_comment: comment,
-      isGoing: true
+      user_comment: comment.comment,
+      isGoing: comment.isGoing
     }).then(function(data){
       var url ={
         url : `/events/1`
