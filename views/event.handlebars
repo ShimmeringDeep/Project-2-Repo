@@ -10,7 +10,8 @@
     <div class="collapse navbar-collapse" id="navcol-1" style="font-size:13px;font-family:Montserrat, sans-serif;color:rgb(255,255,255);">
       <ul class="nav navbar-nav ml-auto">
         <li class="nav-item" role="presentation">
-          <a class="nav-link" href="#" id="signup-link" style="color:white;background-color:rgba(255,255,255,0.57);">Sign Out
+          <a class="nav-link" href="#" id="signup-link" style="color:white;background-color:rgba(255,255,255,0.57);">Sign
+            Out
           </a>
         </li>
       </ul>
@@ -21,72 +22,75 @@
 <div class="container" id="dash-container">
   <section>
     <div class="your-events">
-      <h1 id="eventname">Event Name{{event.title}}</h1>
+      <h1 id="eventname">{{event.title}}</h1>
       <div class="row">
-        <div class="col">
-          <p>Date{{event.date}}</p>
-        </div>
-        <div class="col">
-          <p>Venue{{event.venue}}</p>
-        </div>
-        <div class="col">
-          <p>Address{{event.address}}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <form action="/action_page.php">
-            <input id="going-checkbox" type="checkbox" name="attending" value="true"> Attending
-            <br>
-          </form>
-        </div>
-        <div class="col">
-          <i class="fa fa-map-marker" id="band-icon" style="font-size:22px;"></i>
-        </div>
-        <div class="col">
-          <div id="attend-icon" class="col">
-            <i class="fa fa-users" id="band-icon" style="font-size:22px;"></i> {{attending.number}}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="container comments-parent">
 
-      <h1 id="comments-headline">Comments:</h1>
+        <div class="col-md-6" id = "mapAddress">
 
-      <div class="row" id="comments-div">
-        {{#each attending.comments}}
-        <div class="col-md-12">
-          <h1>
-            <i class="fa fa-user-circle-o" id="band-icon" style="font-size:22px;"></i> {{User.handle}}: </h1>
+          // aqui va el mapa
         </div>
-        <div class="col-md-12">
-          <h2> {{user_comment}} </h2>
-        </div>
-        {{/each}}
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="row" id="add-comment">
-      <div class="col-md-12">
-        <form method="POST" action="/api/comment/create">
-          <div class="form-group">
-            <input class="form-control" id="comment_user" type="name" name="comment" placeholder="Enter comment here...">
+
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <p id="event-page-p">Venue: {{event.venue}}</p>
+            </div>
+            <div class="col-md-6">
+              <p id="event-page-p">Address: {{event.address}}</p>
+            </div>
           </div>
-          <div class="form-group">
-            <button class="btn btn-primary  modal-btn-style" id="comment-submit" type="submit">Submit</button>
+          <div class="row">
+            <div class="col-md-6">
+              <p id="event-page-p">Date: {{event.date}}</p>
+            </div>
+            <div class="col-md-6">
+              <form id="going-checkbox-form" action="/action_page.php">
+                <input id="going-checkbox" type="checkbox" name="attending" value="true"> <p id="going-checkbox-p">Attending</p>
+                <br>
+              </form>
+            </div>
           </div>
 
-        </form>
+        </div>
       </div>
+</div>
+</section>
+<section>
+  <div class="container comments-parent">
+
+    <h1 id="comments-headline">Comments:</h1>
+
+    <div class="row" id="comments-div">
+      {{#each attending.comments}}
+      <div class="col-md-12 comment-handle">
+        <h1>
+          <i class="fa fa-user-circle-o" id="band-icon" style="font-size:22px;"></i> {{User.handle}}: </h1>
+      </div>
+      <div class="col-md-12 actual-comment">
+        <h2> {{user_comment}} </h2>
+      </div>
+      {{/each}}
     </div>
-    {{!--
-    <div class="row form-group">
-      <div class="col">
-      </div>
-    </div> --}}
-  </section>
+  </div>
+</section>
+<section>
+  <div class="row" id="add-comment">
+    <div class="col-md-12">
+      <form method="POST" action="/api/comment/create">
+        <div class="form-group">
+          <input class="form-control" id="comment_user" type="name" name="comment" placeholder="Enter comment here...">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary  modal-btn-style" id="comment-submit" type="submit">Submit</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  {{!--
+  <div class="row form-group">
+    <div class="col">
+    </div>
+  </div> --}}
+</section>
 </div>

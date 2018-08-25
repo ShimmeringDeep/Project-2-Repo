@@ -89,7 +89,7 @@ body {
   background-color: white;
   color: black;
   font-weight: 300;
-  opacity: .9;
+  opacity: .92;
   margin-top: 90px;
 }
 
@@ -101,6 +101,15 @@ body {
   background-color:#b70379;
   color:rgb(255,255,255);
 }
+#login-clicky, #signup-clicky{
+  background-color: #a34381;
+  color: white;
+  font-weight: 600;
+}
+#login-clicky:hover, #signup-clicky:hover{
+  background-color: #b70379;
+}
+
 #login-btn:hover {
   background-color:#a34381;
   color:rgb(255,255,255);
@@ -162,14 +171,44 @@ body {
 
 #eventname{
   padding: 20px;
+  text-align: center;
 }
 
 #comments-headline{
-  text-align: center;
+  text-align: left;
+  font-size: 20px;
+  padding-left: 10px;
 }
 
 #comments-div{
   font-size: 10px;
+}
+.comment-handle h1{
+  font-size: 15px;
+  padding-left: 10px;
+}
+.actual-comment h2{
+  font-size: 15px;
+  padding-left: 30px;
+  font-family: monserrat;
+}
+
+#mapAddress{
+  height: 300px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+#event-page-p{
+  font-size: 20px;
+  font-family: montserrat;
+  font-weight: 400;
+}
+
+#going-checkbox-p{
+  font-size: 20px;
+  font-family: montserrat;
+  font-weight: 400;
 }
 
 @media (min-width: 768px) {
@@ -184,6 +223,14 @@ body {
   #eventname{
     padding: 50px;
   }
+  #dashboard-p{
+    font-size: 20px;
+    font-family: montserrat;
+    font-weight: 400;
+  }
+  #event-page-p{
+    padding-top: 30px;
+  }
 }
 
 @media (max-width: 370px) {
@@ -191,5 +238,6 @@ body {
     margin:0px 100px;
   }
 }
+
 
 
